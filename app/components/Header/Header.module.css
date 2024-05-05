@@ -1,0 +1,71 @@
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/images/header-background.png);
+    /*your background image*/
+    background-repeat: no-repeat;
+    /*we want to have one single image not a repeated one*/
+    background-size: cover;
+    color: #fff;
+    padding: 52px 110px 52px 110px;
+    display: grid;
+    row-gap: 30px;
+    column-gap: 100px;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr minmax(350px, 830px) 1fr;
+}
+
+.location-container {
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 2;
+
+}
+
+.location-text{
+    font-size: 35px;
+    font-family:"strong";
+}
+
+.logo {
+    margin: 0 auto;
+    grid-column: 2;
+}
+
+.phone-container {
+    grid-column: 3;
+    grid-row: 2;
+    margin: auto;
+    margin-right: 0;
+    font-size: 35px;
+    text-wrap: nowrap;
+}
+
+.input{
+    width: 100%;
+    background-color: black;
+}
+
+.input[type="text"] {
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    color: white;
+  }
+
+.input-container {
+    padding: 12px 22px;
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    border: 2px solid white;
+}
+
+.panel-container{
+    grid-column: 3;
+    grid-row: 3;
+    display: flex;
+    justify-content: end;
+    gap: 30px;
+    align-items: center;
+}
+

@@ -1,0 +1,44 @@
+.news {
+    color: #fff;
+    width: 1515px;
+    margin: 0 auto;
+}
+
+.news-title {
+    font-size: 67px;
+    font-family: stalinist;
+    margin-bottom: 136px;
+    padding-top: 220px;
+}
+
+.news-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 405px;
+    cursor: pointer;
+    gap: 150px;
+}
+
+.new-title{
+    font-size: 35px;
+    font-family: interRegular;
+}
+
+.new-subtitle{
+    font-size: 35px;
+    font-family: strong;
+}
+
+.main-img{
+    margin-bottom: 32px;
+}
+
+.new-title{
+    margin-bottom: 6px;
+}
+
+.new-info{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}

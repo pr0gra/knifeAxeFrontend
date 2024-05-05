@@ -1,0 +1,18 @@
+.navigation {
+    background-color: #1F1F1F;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    color: #ffff;
+    font-family:"strong";
+}
+
+.ul {
+    display: flex;
+    align-items: center;
+    gap: 184px;
+}
+
+.li {
+    font-size: 35px;
+}
