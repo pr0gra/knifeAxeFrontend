@@ -26,7 +26,7 @@ export function Manufacturers() {
   const handleClickManufacturer = () => {};
 
   return (
-    <div className={styles["manufacturers"]}>
+    <section className={styles["manufacturers"]}>
       <p className={styles["title"]}>Производители</p>
       <div className={styles["manufacturers-container"]}>
         {" "}
@@ -50,6 +50,6 @@ export function Manufacturers() {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

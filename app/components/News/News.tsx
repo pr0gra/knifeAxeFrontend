@@ -42,7 +42,7 @@ export function News() {
               <div className={styles["new-info"]}>
                 <div>
                   <p className={styles["new-title"]}>
-                    {newData.title.rendered}
+                    {(newData.title.rendered).toLocaleUpperCase()}
                   </p>
                   <p className={styles["new-subtitle"]}>
                     {newData.acf.post_subtitle}

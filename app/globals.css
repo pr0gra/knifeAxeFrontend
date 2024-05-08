@@ -68,3 +68,17 @@ a, button{
 	font-family: "strong";
 	src: url('./assets/fonts/Strong-Regular.ttf');
 }
+
+:root {
+	
+	--swiper-pagination-color: #D9D9D9;
+	--swiper-pagination-bullet-size: 16px;
+	--swiper-pagination-bullet-width: 16px;
+	--swiper-pagination-bullet-height: 16px;
+	--swiper-pagination-bullet-inactive-color: #D9D9D9;
+	--swiper-pagination-bullet-inactive-opacity: 0.3;
+	--swiper-pagination-bullet-opacity: 1;
+	--swiper-pagination-bullet-horizontal-gap: 4px;
+	--swiper-pagination-bullet-vertical-gap: 6px;
+	
+  }
