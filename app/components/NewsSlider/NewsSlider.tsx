@@ -43,7 +43,7 @@ export function NewsSlider() {
         >
           {newsData.map((newData, index) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <div
                   style={{ backgroundImage: `url(${newData.acf.post_img})` }}
                   className={styles["slider-element"]}
