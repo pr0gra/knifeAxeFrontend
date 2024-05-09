@@ -17,7 +17,7 @@ export function Manufacturers() {
   const [manufacturers, setManufacturers] = useState<IManufacturers[]>([]);
   useEffect(() => {
     fetch(
-      "http://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf"
+      "https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf"
     )
       .then((response) => response.json())
       .then((data) => setManufacturers(data));

@@ -21,7 +21,7 @@ export function NewsSlider() {
   const [newsData, setNewsData] = useState<INewsData[]>([]);
   useEffect(() => {
     fetch(
-      "http://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=up"
+      "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=up"
     )
       .then((response) => response.json())
       .then((data) => setNewsData(data));

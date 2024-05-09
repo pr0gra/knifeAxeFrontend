@@ -12,7 +12,7 @@ import letter from '../../assets/icons/letter.svg'
 export function Footer() {
    const [footerData, setFooterData] = useState([]);
   useEffect(() => {
-    fetch("http://nozhtopor.na4u.ru/wp-json/wp/v2/site-options")
+    fetch("https://nozhtopor.na4u.ru/wp-json/wp/v2/site-options")
       .then((response) => response.json())
       .then((data) => setFooterData(data));
   }, []);
