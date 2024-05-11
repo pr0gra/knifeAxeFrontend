@@ -9,7 +9,6 @@ interface IProps {
 }
 
 export function ImageSection({ image = "" }: IProps) {
-  // console.log(image, "image");
   return (
     <Image
       src={image}

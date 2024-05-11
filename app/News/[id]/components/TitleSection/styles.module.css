@@ -1,0 +1,12 @@
+.title {
+  font-size: clamp(20px, 5vw, 100px);
+  color: white;
+  font-family: strong;
+  margin-bottom: clamp(29px, 1vw, 45px);
+}
+
+@media (max-width: 768px) {
+  .title {
+    text-align: center;
+  }
+}
