@@ -26,7 +26,7 @@ export function NewsSlider() {
       .then((response) => response.json())
       .then((data) => setNewsData(data));
   }, []);
-  console.log(newsData);
+
   return (
     <section className={styles["news-slider"]}>
       <div className={styles["slider"]}>
