@@ -1,0 +1,38 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(21.34px, 5vw, 163px);
+  align-items: center;
+  margin-bottom: clamp(39px, 15vw, 232px);
+}
+
+.hero-description h1 {
+  color: white;
+  font-family: interRegular;
+  font-size: clamp(15px, 2vw, 80px);
+}
+.hero-description h3,
+.description {
+  color: white;
+  font-family: Strong;
+  font-size: clamp(10px, 2vw, 35px);
+}
+
+.hero-img {
+  width: clamp(170px, 30vw, 540px);
+  height: clamp(149px, 30vw, 514px);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-description {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: clamp(268px, 60vw, 464px);
+    text-align: center;
+  }
+}

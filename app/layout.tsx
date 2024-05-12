@@ -19,10 +19,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{
+          backgroundColor: "#1F1F1F",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <Header />
         <Navigation />
-        {children}
+        <div
+          style={{
+            maxWidth: "1680px",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+          }}
+        >
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

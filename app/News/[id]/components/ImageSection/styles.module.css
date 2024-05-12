@@ -1,0 +1,5 @@
+.image {
+  width: 100%;
+  height: clamp(157px, 50vw, 749px);
+  margin-bottom: clamp(34px, 4vw, 138px);
+}

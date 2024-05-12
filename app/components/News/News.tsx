@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./News.module.css";
 import Image from "next/image";
 import arrow from "../../assets/icons/arrow-to-right.svg";
+import Link from "next/link";
 export interface INews {
   id: number;
   title: { rendered: string };
@@ -31,7 +32,11 @@ export function News() {
       <div className={styles["news-container"]}>
         {news?.map((newData, index) => {
           return (
-            <div className={styles["new-containier"]} key={index}>
+            <Link
+              href={`/News/${newData.id}`}
+              className={styles["new-containier"]}
+              key={index}
+            >
               <Image
                 className={styles["main-img"]}
                 width={405}
@@ -42,7 +47,7 @@ export function News() {
               <div className={styles["new-info"]}>
                 <div>
                   <p className={styles["new-title"]}>
-                    {(newData.title.rendered).toLocaleUpperCase()}
+                    {newData.title.rendered.toLocaleUpperCase()}
                   </p>
                   <p className={styles["new-subtitle"]}>
                     {newData.acf.post_subtitle}
@@ -51,7 +56,7 @@ export function News() {
 
                 <Image src={arrow} className={styles["arrow-img"]} alt="img" />
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
