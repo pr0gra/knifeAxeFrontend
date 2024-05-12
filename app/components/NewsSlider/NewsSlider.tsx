@@ -5,6 +5,7 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import Link from "next/link";
 interface INewsData {
   acf: {
     post_img: string;
@@ -26,7 +27,7 @@ export function NewsSlider() {
       .then((response) => response.json())
       .then((data) => setNewsData(data));
   }, []);
-
+  console.log(newsData)
   return (
     <section className={styles["news-slider"]}>
       <div className={styles["slider"]}>
@@ -49,11 +50,13 @@ export function NewsSlider() {
                   className={styles["slider-element"]}
                 >
                   <div className={styles["new-container"]}>
-                    <p className={styles["title"]}>{newData.title.rendered}</p>
-                    <p className={styles["subtitle"]}>
-                      {newData.acf.post_subtitle}
-                    </p>
-                    <button className={styles["button"]}>
+                  <div className={styles['new-text-container']}>
+                      <p className={styles["title"]}>{newData.title.rendered}</p>
+                      <p className={styles["subtitle"]}>
+                        {newData.acf.post_subtitle}
+                      </p>
+                  </div>
+                    <Link href={`/News/${newData.id}`} className={styles["button"]}>
                       <p>Узнать больше</p>
                       <svg
                         width="35"
@@ -70,7 +73,7 @@ export function NewsSlider() {
                           stroke-linejoin="round"
                         />
                       </svg>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </SwiperSlide>

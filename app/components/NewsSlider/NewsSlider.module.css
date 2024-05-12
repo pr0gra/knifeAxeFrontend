@@ -8,7 +8,11 @@
     height: 600px;
     max-width:800px ;
     margin-left: 120px;
+    padding: 24px 20px 40px 20px;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .slider{
@@ -23,5 +27,29 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+}
+
+.title{
+    font-family: stalinist;
+    font-size: 67px;
+    margin-bottom: 85px;
+
+}
+
+.subtitle{
+    font-family: strong;
+    font-size: 35px;
+
+}
+
+.button{
+    font-family: strong;
+    font-size: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 454px;
+    border: 1px solid white;
+    padding: 14px;
 }
 

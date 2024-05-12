@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   gap: clamp(21.34px, 5vw, 163px);
-  align-items: center;
+
   margin-bottom: clamp(39px, 15vw, 232px);
 }
 
 .hero-description h1 {
   color: white;
-  font-family: interRegular;
+  font-family: "interRegular";
   font-size: clamp(15px, 2vw, 80px);
 }
 .hero-description h3,
@@ -21,6 +21,12 @@
 .hero-img {
   width: clamp(170px, 30vw, 540px);
   height: clamp(149px, 30vw, 514px);
+}
+
+.hero-description{
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
 }
 
 @media (max-width: 768px) {

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Manufacturers.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface IManufacturers {
   id: number;
@@ -23,7 +24,6 @@ export function Manufacturers() {
       .then((data) => setManufacturers(data));
   }, []);
 
-  const handleClickManufacturer = () => {};
 
   return (
     <section className={styles["manufacturers"]}>
@@ -33,7 +33,7 @@ export function Manufacturers() {
         {manufacturers?.map((manufacturerData, index) => {
           return (
             <div className={styles["manufacturer-containier"]} key={index}>
-              <button className={styles['button']} onClick={handleClickManufacturer}>
+              <Link className={styles['button']} href={`/Manufacturer/${manufacturerData.id}`}>
                 <Image
                   className={styles["img"]}
                   width={406}
@@ -41,7 +41,7 @@ export function Manufacturers() {
                   src={manufacturerData.acf.manufacturer_img}
                   alt="img"
                 />
-              </button>
+              </Link>
 
               <p className={styles["manufacturer-title"]}>
                 {manufacturerData.name}

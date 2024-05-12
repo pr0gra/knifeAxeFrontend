@@ -12,12 +12,19 @@
   column-gap: 100px;
   grid-template-rows: auto auto auto;
   grid-template-columns: 1fr minmax(350px, 830px) 1fr;
-  width: 100%;
+
+}
+
+.location-text-conatiner{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .location-container {
   display: flex;
   align-items: center;
+  gap: 5px;
   grid-column: 1;
   grid-row: 2;
 }

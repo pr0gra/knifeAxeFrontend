@@ -2,28 +2,29 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-import emptyImg from "@/app/assets/images/manufacturer-hero-image.png";
-import Image from "next/image";
 import ProductBox from "./components/ProductBox";
 import { Navigation } from "./components/Navigation/Navigation";
-
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 export function Products() {
+  const [productsData, setProductsData] = useState([]);
+  const params = useParams<{ tag: string; item: string }>();
+  useEffect(() => {
+    fetch(
+      `http://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`,
+      { mode: "no-cors" }
+    )
+      .then((response) => response.json())
+      .then((data) => {console.log(data); setProductsData(data)});
+  }, [params]);
+  console.log(productsData);
   return (
     <>
       <h2 className={styles["h2"]}>Товары</h2>
       <div className={styles["products-container"]}>
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
-        <ProductBox />
+        {productsData.map((product, index) => {
+          return <ProductBox product={product} key={index} />;
+        })}
       </div>
       <Navigation />
     </>

@@ -41,7 +41,7 @@ export default async function page() {
   const getPostData: IPostData[] | any = await (
     await fetch(
       `https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&include=${
-        fullUrl.split("/")[4]
+        Number(fullUrl.split("/")[4])
       }`
     )
   ).json();
