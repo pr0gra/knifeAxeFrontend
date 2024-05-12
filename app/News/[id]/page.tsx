@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import axios from "axios";
 import { headers } from "next/headers";
@@ -6,6 +8,7 @@ import { headers } from "next/headers";
 import { ImageSection } from "./components/ImageSection/ImageSection";
 import { DescriptionSection } from "./components/DescriptionSection/DescriptionSection";
 import { TitleSection } from "./components/TitleSection/TitleSection";
+import { useParams, useRouter } from "next/navigation";
 
 interface ITitle {
   rendered: string;
@@ -32,42 +35,50 @@ export interface Error {
     details: { include: [Object] };
   };
 }
-export default async function page() {
-  const headersList = headers();
-  const domain = headersList.get("host") || "";
-  const fullUrl = headersList.get("referer") || "";
+
+export default function page() {
+  const [postData, setPostData] = useState<IPostData[] | null | any>(null);
+  const params = useParams();
+  async function getPostData() {
+    const response = await fetch(
+      `https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&include=${params.id}`
+    )
+      .then((data) => data.json())
+      .then((data) => setPostData(data))
+      .catch((err) => console.log(err));
+
+    return response;
+  }
   // console.log(fullUrl.split("/")[4], "fullUrlfullUrlfullUrl");
 
-  const getPostData: IPostData[] | any = await (
-    await fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&include=${
-        fullUrl.split("/")[4]
-      }`
-    )
-  ).json();
-  console.log(getPostData, "AAAAAAAAAAAAAAA");
+  useEffect(() => {
+    getPostData();
+    // setPostData(data);
+  }, []);
+
+  console.log(postData, "AAAAAAAAAAAAAAA");
   return (
     <div className={styles["page-body"]}>
-      {!getPostData[0] && getPostData.length !== 0 && (
+      {!postData && postData?.length !== 0 && (
         <p style={{ fontSize: "30px", color: "white" }}>Загрузка...</p>
       )}
-      {getPostData.length == 0 && (
+      {!postData && postData?.length == 0 && (
         <p style={{ fontSize: "30px", color: "white" }}>
           Такого поста не существует
         </p>
       )}
-      {/* {getPostData[0] && ( */}
-      <>
-        <TitleSection
-          title={getPostData[0]?.title.rendered}
-          postTitle={getPostData[0]?.acf.post_subtitle}
-        />
+      {postData !== null && postData[0] && (
+        <>
+          <TitleSection
+            title={postData[0]?.title.rendered}
+            postTitle={postData[0]?.acf.post_subtitle}
+          />
 
-        <ImageSection image={getPostData[0]?.acf.post_img} />
-        <DescriptionSection description={getPostData[0]?.acf.post_text} />
-        {/* {getPostData[0] && <NewsBlocks data={getPostData[0]} />} */}
-      </>
-      {/* )} */}
+          <ImageSection image={postData[0]?.acf.post_img} />
+          <DescriptionSection description={postData[0]?.acf.post_text} />
+          {/* тут блок с новостями */}
+        </>
+      )}
     </div>
   );
 }
