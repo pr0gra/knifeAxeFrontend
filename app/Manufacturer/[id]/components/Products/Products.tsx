@@ -11,8 +11,7 @@ export function Products() {
   const params = useParams<{ tag: string; item: string }>();
   useEffect(() => {
     fetch(
-      `http://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`,
-      { mode: "no-cors" }
+      `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`,
     )
       .then((response) => response.json())
       .then((data) => {console.log(data); setProductsData(data)});

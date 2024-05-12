@@ -1,0 +1,173 @@
+.main{
+    color: #fff;
+    width: 1515px;
+    margin: 0 auto;
+}
+
+.label{
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.cr-wrapper *,
+.cr-wrapper *::before,
+.cr-wrapper *::after {
+	box-sizing: content-box !important;
+}
+
+.cr-wrapper input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.cr-wrapper span {
+	font-size: 17px;
+}
+
+.cr-wrapper {
+	display: table;
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.cr-wrapper input[type="checkbox"] ~ .cr-input {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: transparent;
+	transition: background 250ms;
+	border: 1px solid #FFFFFF;
+	border-radius: 3px;
+	transform: translate(0, -50%);
+}
+
+.cr-wrapper input[type="radio"] ~ .cr-input {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: #FFFFFF;
+	transition: background 250ms;
+	border: 1px solid #FFFFFF;
+	border-radius: 20px;
+	transform: translate(0, -50%);
+}
+
+.cr-wrapper input[type="checkbox"] ~ .cr-input::after {
+	content: "";
+	position: absolute;
+	display: none;
+	left: 4px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	transition: background 250ms;
+	background-color: #FFFFFF;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.cr-wrapper input[type="radio"] ~ .cr-input::after {
+	content: "";
+	position: absolute;
+	display: none;
+	left: 4px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	border-radius: 20px;
+	background: #FFFFFF;
+	transition: background 250ms;
+}
+
+.cr-wrapper input:checked ~ .cr-input::after {
+	display: block;
+}
+
+
+
+.cr-wrapper input[type="checkbox"]:disabled ~ .cr-input,
+.cr-wrapper input[type="radio"]:disabled ~ .cr-input {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.cr-wrapper input[type="checkbox"]:disabled ~ span,
+.cr-wrapper input[type="radio"]:disabled ~ span {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.cr-wrapper input[type="checkbox"]:disabled ~ .cr-input::after {
+	background: #FFFFFF;
+}
+
+.cr-wrapper input[type="radio"]:disabled ~ .cr-input::after {
+	background: #FFFFFF;
+}
+
+.search-title{
+    margin-bottom: 100px;
+    font-size: 100px;
+    font-family: strong;
+}
+
+
+.content-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fit, 530px);
+    grid-row-gap: 89px;
+    grid-column-gap: 100px;
+}
+
+
+.filters-container-title{
+    font-size: 30px;
+    color: #989696;
+}
+
+.filters-container{
+    display: flex;
+    grid-column: span 1;
+    grid-row: span 2;
+    gap: 100px;
+    flex-direction: column;
+    width: 547px;
+}
+
+.filters-title{
+    font-size: 30px;
+
+}
+
+.cr-wrapper span{
+    font-size: 30px;
+}
+
+.filters{
+    border: 1px solid #fff;
+
+    font-family: strong;
+}
+
+.filters-title-container{
+    padding: 30px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+}
+
+.filters-options{
+    display: flex;
+    flex-direction: column;
+    padding: 27px 70px;
+    gap: 13px;
+}

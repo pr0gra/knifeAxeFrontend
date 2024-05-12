@@ -8,7 +8,7 @@ export function Subscribe() {
             <p className={styles["title"]}>Подписаться</p>{" "}
             <p className={styles["description"]}>Оставьте свой email, и мы будем <br /> сообщать вам об акциях и новинках</p>
        </div>
-       <input placeholder="Email" className={styles["input"]} type="text" />
+       <input id="text" placeholder="Email" className={styles["input"]} type="text" />
        <button className={styles["button"]}>Подписаться</button>
       </div>
 
