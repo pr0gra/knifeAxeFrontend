@@ -2,11 +2,20 @@
   font-size: clamp(20px, 5vw, 100px);
   color: white;
   font-family: strong;
+  /* margin-bottom: clamp(29px, 1vw, 45px); */
+}
+
+.under-title {
+  font-size: clamp(15px, 3vw, 75px);
+  color: white;
+  font-family: strong;
   margin-bottom: clamp(29px, 1vw, 45px);
+  margin-top: 6px;
 }
 
 @media (max-width: 768px) {
-  .title {
+  .title,
+  .under-title {
     text-align: center;
   }
 }

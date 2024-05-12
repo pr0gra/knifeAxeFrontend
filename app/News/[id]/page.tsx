@@ -56,18 +56,18 @@ export default async function page() {
           Такого поста не существует
         </p>
       )}
-      {getPostData[0] && (
-        <>
-          <TitleSection
-            title={getPostData[0].title.rendered}
-            postTitle={getPostData[0].acf.post_subtitle}
-          />
+      {/* {getPostData[0] && ( */}
+      <>
+        <TitleSection
+          title={getPostData[0]?.title.rendered}
+          postTitle={getPostData[0]?.acf.post_subtitle}
+        />
 
-          <ImageSection image={getPostData[0].acf.post_img} />
-          <DescriptionSection description={getPostData[0].acf.post_text} />
-          {/* {getPostData[0] && <NewsBlocks data={getPostData[0]} />} */}
-        </>
-      )}
+        <ImageSection image={getPostData[0]?.acf.post_img} />
+        <DescriptionSection description={getPostData[0]?.acf.post_text} />
+        {/* {getPostData[0] && <NewsBlocks data={getPostData[0]} />} */}
+      </>
+      {/* )} */}
     </div>
   );
 }

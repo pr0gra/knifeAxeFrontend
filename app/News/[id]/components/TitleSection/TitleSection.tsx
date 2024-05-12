@@ -19,7 +19,7 @@ export function TitleSection({ title, postTitle }: IProps) {
       {postTitle && (
         <p
           dangerouslySetInnerHTML={{ __html: postTitle }}
-          className={styles["title"]}
+          className={styles["under-title"]}
         />
       )}
     </>
