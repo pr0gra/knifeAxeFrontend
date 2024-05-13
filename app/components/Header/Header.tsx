@@ -51,8 +51,12 @@ export function Header() {
         </Link>
       </form>
       <div className={styles["panel-container"]}>
-        <Image src={favourite} alt="favourite" />{" "}
-        <Image src={cart} alt="cart" />
+        <Link href="/Favourite">
+          <Image src={favourite} alt="favourite" />
+        </Link>
+        <Link href="/CartPage">
+          <Image src={cart} alt="cart" />
+        </Link>
       </div>
     </header>
   );

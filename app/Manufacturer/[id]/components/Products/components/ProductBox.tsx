@@ -7,19 +7,60 @@ import styles from "../styles.module.css";
 import cart from "@/app/assets/icons/cart.svg";
 import heart from "@/app/assets/icons/heart.svg";
 import sanitizeHtml from "sanitize-html";
-export default function ProductBox({ product }) {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isAddedToFavourite, setIsAddedToFavourite] = useState(false);
+
+export interface IFavouriteProduct {
+  id: number;
+  title: { rendered: string };
+  acf: {
+    ax_height: string;
+    ax_weight: string;
+    blade_hardness: string;
+    blade_length: string;
+    blade_width: string;
+    butt_thickness: string;
+    cutting_edge: string;
+    handle_length: string;
+    handle_material: string;
+    manufacturer_id: number;
+    product_category: boolean;
+    product_description: string;
+    product_photos: string[];
+    product_price: string;
+    product_steel: number;
+    product_thumbnail: string;
+    steel_hardness: string;
+  };
+}
+
+export default function ProductBox({
+  product,
+}: {
+  product: IFavouriteProduct;
+}) {
+  const lsDataFavourite = JSON.parse(
+    String(localStorage.getItem("favourite")) || ""
+  );
+  const lsDataCart = JSON.parse(String(localStorage.getItem("cart")) || "");
+  const [isAddedToCart, setIsAddedToCart] = useState(
+    lsDataCart ? lsDataCart.find((x: any) => x.id === product.id) : false
+  );
+  const [isAddedToFavourite, setIsAddedToFavourite] = useState(
+    lsDataFavourite
+      ? lsDataFavourite.find((x: any) => x.id === product.id)
+      : false
+  );
 
   const element = document.createElement("p");
   element.innerHTML = product.title.rendered;
   const decodedText = element.textContent;
 
   const handleAddToFavourite = () => {
-    const favouriteStorage = JSON.parse(localStorage.getItem("favourite"));
+    const favouriteStorage = JSON.parse(
+      String(localStorage.getItem("favourite")) || ""
+    );
     if (isAddedToFavourite) {
       const filteredStorage = favouriteStorage.filter(
-        (elem) => elem.id !== product.id
+        (elem: any) => elem.id !== product.id
       );
       localStorage.setItem("favourite", JSON.stringify([...filteredStorage]));
     } else {
@@ -33,26 +74,23 @@ export default function ProductBox({ product }) {
       }
     }
 
-    setIsAddedToFavourite((prev) => !prev);
+    setIsAddedToFavourite((prev: boolean) => !prev);
   };
   const handleAddToCart = () => {
-    const cartStorage = JSON.parse(localStorage.getItem("cart"));
+    const cartStorage = JSON.parse(String(localStorage.getItem("cart")) || "");
     if (isAddedToCart) {
       const filteredStorage = cartStorage.filter(
-        (elem) => elem.id !== product.id
+        (elem: any) => elem.id !== product.id
       );
       localStorage.setItem("cart", JSON.stringify([...filteredStorage]));
     } else {
       if (cartStorage === null) {
         localStorage.setItem("cart", JSON.stringify([product]));
       } else {
-        localStorage.setItem(
-          "cart",
-          JSON.stringify([...cartStorage, product])
-        );
+        localStorage.setItem("cart", JSON.stringify([...cartStorage, product]));
       }
     }
-    setIsAddedToCart((prev) => !prev);
+    setIsAddedToCart((prev: boolean) => !prev);
   };
 
   return (
