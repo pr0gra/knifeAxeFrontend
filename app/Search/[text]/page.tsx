@@ -18,8 +18,8 @@ function createArraybyLength(length: number) {
 }
 console.log(createArraybyLength(10));
 
-export default function page() {
-  const params = useParams();
+export default function Page() {
+  const params: {text: string} = useParams();
   const [productsData, setProductsData] = useState([]);
   const [metals, setMetals] = useState([]);
   const [manufacturers, setManufacturers] = useState([]);
@@ -124,8 +124,8 @@ export default function page() {
         })}
       </div>
       <div className={styles["pagination"]}>
-        {createArraybyLength(totalCount)?.map((number) => (
-          <button onClick={()=>{setPage(number)}} className={styles['pagination-number']}>{number}</button>
+        {createArraybyLength(totalCount)?.map((number, index) => (
+          <button key={index} onClick={()=>{setPage(number)}} className={styles['pagination-number']}>{number}</button>
         ))}
       </div>
     </main>

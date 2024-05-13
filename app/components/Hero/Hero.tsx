@@ -31,7 +31,7 @@ export function Hero() {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {heroData.map((elem, index) => {
+          {heroData.map((elem:any, index) => {
              const element = document.createElement("p");
              element.innerHTML = elem.acf.post_text;
              const decodedText = element.textContent;

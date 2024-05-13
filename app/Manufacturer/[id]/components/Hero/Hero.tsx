@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 export function Hero() {
-  const [heroData, setHeroData] = useState([]);
-  const params = useParams<{ tag: string; item: string }>()
+  const [heroData, setHeroData] = useState<any>([]);
+  const params = useParams<{ id: string }>()
   useEffect(() => {
     console.log(params)
     fetch(

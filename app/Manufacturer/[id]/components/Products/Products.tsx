@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 export function Products() {
   const [productsData, setProductsData] = useState([]);
-  const params = useParams<{ tag: string; item: string }>();
+  const params = useParams<{ id: string; }>();
   useEffect(() => {
     fetch(
       `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`,
