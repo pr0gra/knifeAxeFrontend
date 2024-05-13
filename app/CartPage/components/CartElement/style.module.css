@@ -29,6 +29,7 @@
   color: #777676;
   font-family: strong;
   margin-bottom: 10px;
+  overflow-wrap: break-word;
 }
 
 .price {
