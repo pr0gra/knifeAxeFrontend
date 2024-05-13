@@ -34,6 +34,11 @@ export default function page() {
       )
     );
   };
+  useEffect(() => {
+    setFormData((prev: any) => {
+      return { ...prev, products: productsToBuy };
+    });
+  }, [productsToBuy]);
   const getTotalPrice = () => {
     let totalPrice = 0;
 
@@ -62,6 +67,7 @@ export default function page() {
           body: JSON.stringify(formData),
         }
       );
+      return response.json();
       // const result = await response.json();
     } catch (error) {
       console.error("Ошибка при отправке заказа: ", error);
