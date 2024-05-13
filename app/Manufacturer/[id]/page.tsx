@@ -3,7 +3,7 @@ import { Hero } from "./components/Hero/Hero";
 import { Products } from "./components/Products/Products";
 import styles from "./styles.module.css";
 
-export default function page() {
+export default function Page() {
   return (
     <main className={styles["main"]}>
       <Hero />

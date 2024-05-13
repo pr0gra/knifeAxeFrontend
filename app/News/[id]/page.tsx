@@ -56,7 +56,6 @@ export default function Page() {
     // setPostData(data);
   }, []);
 
-  console.log(postData, "AAAAAAAAAAAAAAA");
   return (
     <div className={styles["page-body"]}>
       {!postData && postData?.length !== 0 && (

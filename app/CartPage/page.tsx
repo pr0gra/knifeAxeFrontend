@@ -6,8 +6,11 @@ import { CartElement } from "./components/CartElement/CartElement";
 import { IFavouriteProduct } from "../Manufacturer/[id]/components/Products/components/ProductBox";
 import axios from "axios";
 
-export default function page() {
-  const cartData = JSON.parse(String(localStorage.getItem("cart")) || "");
+export default function Page() {
+  const cartData =
+    typeof window !== "undefined"
+      ? JSON.parse(String(localStorage.getItem("cart")) || "")
+      : [];
   const [productsToBuy, setProductsToBuy] = useState<
     { id: number; quantity: number }[]
   >(getDefaultValueForProductsToBuyArray());
