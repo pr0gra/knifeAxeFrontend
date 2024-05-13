@@ -5,24 +5,50 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import ProductBox from "@/app/Manufacturer/[id]/components/Products/components/ProductBox";
 import { Checkbox } from "./components/Checkbox/Checkbox";
-// product_steel=12
-// manufacturer_id=6
-export default function page() {
-  const params = useParams();
+
+function createArraybyLength(length: number) {
+  let arr = [];
+  for (let i = 1; i <= length; i++) {
+    arr.push(i);
+  }
+  if(arr.length === 1 ){
+    return null
+  }
+  return arr;
+}
+console.log(createArraybyLength(10));
+
+export default function Page() {
+  const params: {text: string} = useParams();
   const [productsData, setProductsData] = useState([]);
   const [metals, setMetals] = useState([]);
   const [manufacturers, setManufacturers] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
   const [checkboxesList, setCheckboxesList] = useState({
     metals: [],
     manufacturers: [],
   });
   useEffect(() => {
     fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&search=${params?.text}`
+      `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
+        params?.text
+      }${
+        checkboxesList.metals.join(",").length
+          ? `&product_steel=${checkboxesList.metals.join(",")}`
+          : ""
+      }${
+        checkboxesList.manufacturers.join(",").length
+          ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
+          : ""
+      }`
     )
-      .then((response) => response.json())
+      .then((response) => {
+        setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
+        return response.json();
+      })
       .then((data) => setProductsData(data));
-  }, []);
+  }, [checkboxesList, page]);
 
   useEffect(() => {
     fetch(
@@ -80,7 +106,7 @@ export default function page() {
                 {metals.map((metal, index) => {
                   return (
                     <Checkbox
-                    checkboxesList={checkboxesList}
+                      checkboxesList={checkboxesList}
                       setCheckboxesList={setCheckboxesList}
                       key={index}
                       data={metal}
@@ -97,8 +123,11 @@ export default function page() {
           return <ProductBox product={product} key={index} />;
         })}
       </div>
-        
-
+      <div className={styles["pagination"]}>
+        {createArraybyLength(totalCount)?.map((number, index) => (
+          <button key={index} onClick={()=>{setPage(number)}} className={styles['pagination-number']}>{number}</button>
+        ))}
+      </div>
     </main>
   );
 }

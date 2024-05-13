@@ -12,14 +12,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function Header() {
-  const [headerData, setHeaderData] = useState({});
+  const [headerData, setHeaderData] = useState<any>({});
   const [input, setInput] = useState("");
   useEffect(() => {
     fetch(`https://nozhtopor.na4u.ru/wp-json/wp/v2/site-options`)
       .then((response) => response.json())
       .then((data) => setHeaderData(data));
   }, []);
-  const onChange = (e) => {
+  const onChange = (e:any) => {
     setInput(e.target.value);
   };
 

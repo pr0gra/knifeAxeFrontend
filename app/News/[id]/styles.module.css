@@ -2,7 +2,8 @@
   /* background-color: #1f1f1f; */
   position: relative;
   overflow: hidden;
-
+  width: 1515px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }

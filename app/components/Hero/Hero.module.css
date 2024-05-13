@@ -1,0 +1,43 @@
+.hero{
+    position: relative;
+    color: #fff;
+}
+
+.slider{
+    display: flex;
+    height: 900px;
+}
+
+.slider-container{
+    display: flex;
+    width: 1515px;
+    margin: 0 auto;
+    gap: 280px;
+}
+
+.text-content{
+    display: flex;
+    flex-direction: column;
+    gap: 134px;
+}
+
+.text{
+    height: 210px;
+}
+
+.title{
+    font-size: 67px;
+    font-family: stalinist;
+}
+
+.text{
+    font-size: 35px;
+    font-family: strong;
+    height: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.slider-container{
+    display: flex;
+}

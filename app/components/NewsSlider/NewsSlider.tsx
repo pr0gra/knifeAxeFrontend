@@ -27,7 +27,8 @@ export function NewsSlider() {
       .then((response) => response.json())
       .then((data) => setNewsData(data));
   }, []);
-  console.log(newsData)
+
+  console.log(newsData);
   return (
     <section className={styles["news-slider"]}>
       <div className={styles["slider"]}>
@@ -43,6 +44,9 @@ export function NewsSlider() {
           className="mySwiper"
         >
           {newsData.map((newData, index) => {
+            const element = document.createElement("p");
+            element.innerHTML = newData.acf.post_text;
+            const decodedText = element.textContent;
             return (
               <SwiperSlide key={index}>
                 <div
@@ -50,13 +54,16 @@ export function NewsSlider() {
                   className={styles["slider-element"]}
                 >
                   <div className={styles["new-container"]}>
-                  <div className={styles['new-text-container']}>
-                      <p className={styles["title"]}>{newData.title.rendered}</p>
-                      <p className={styles["subtitle"]}>
-                        {newData.acf.post_subtitle}
+                    <div className={styles["new-text-container"]}>
+                      <p className={styles["title"]}>
+                        {newData.title.rendered}
                       </p>
-                  </div>
-                    <Link href={`/News/${newData.id}`} className={styles["button"]}>
+                      <p className={styles["subtitle"]}>{decodedText}</p>
+                    </div>
+                    <Link
+                      href={`/News/${newData.id}`}
+                      className={styles["button"]}
+                    >
                       <p>Узнать больше</p>
                       <svg
                         width="35"

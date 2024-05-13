@@ -39,7 +39,9 @@
 .subtitle{
     font-family: strong;
     font-size: 35px;
-
+    height: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .button{

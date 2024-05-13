@@ -36,7 +36,7 @@ export interface Error {
   };
 }
 
-export default function page() {
+export default function Page() {
   const [postData, setPostData] = useState<IPostData[] | null | any>(null);
   const params = useParams();
   async function getPostData() {

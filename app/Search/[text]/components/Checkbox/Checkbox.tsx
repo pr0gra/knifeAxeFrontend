@@ -6,21 +6,20 @@ export function Checkbox({
   setCheckboxesList,
   checkboxesList,
   checkboxType,
-}) {
+}:any) {
   const [checked, setChecked] = useState(false);
   const handleCkeckboxClick = () => {
-    console.log(checked, checkboxType);
     if (checked) {
       if (checkboxType === "metal") {
         setCheckboxesList({
-          metals: checkboxesList.metals.filter((metal) => metal !== data.id),
+          metals: checkboxesList.metals.filter((metal:any) => metal !== data.id),
           manufacturers: [...checkboxesList.manufacturers],
         });
       } else if (checkboxType === "manufacturer") {
         setCheckboxesList({
           metals: [...checkboxesList.metals],
           manufacturers: checkboxesList.manufacturers.filter(
-            (manufacturer) => manufacturer !== data.id
+            (manufacturer:any) => manufacturer !== data.id
           ),
         });
       }
@@ -41,9 +40,10 @@ export function Checkbox({
   };
 
   return (
-    <div onClick={()=>{handleCkeckboxClick()}}>
+    <div >
       <label className={styles["cr-wrapper"]}>
         <input
+        onClick={()=>{handleCkeckboxClick()}}
           className={styles["checkbox"]}
           type="checkbox"
           id="checkbox"

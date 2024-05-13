@@ -8,6 +8,7 @@ import cart from "@/app/assets/icons/cart.svg";
 import heart from "@/app/assets/icons/heart.svg";
 import sanitizeHtml from "sanitize-html";
 
+
 export interface IFavouriteProduct {
   id: number;
   title: { rendered: string };
@@ -50,17 +51,20 @@ export default function ProductBox({
       : false
   );
 
+
   const element = document.createElement("p");
   element.innerHTML = product.title.rendered;
   const decodedText = element.textContent;
 
   const handleAddToFavourite = () => {
+
     const favouriteStorage = JSON.parse(
       String(localStorage.getItem("favourite")) || ""
     );
     if (isAddedToFavourite) {
       const filteredStorage = favouriteStorage.filter(
         (elem: any) => elem.id !== product.id
+
       );
       localStorage.setItem("favourite", JSON.stringify([...filteredStorage]));
     } else {
@@ -77,10 +81,12 @@ export default function ProductBox({
     setIsAddedToFavourite((prev: boolean) => !prev);
   };
   const handleAddToCart = () => {
+
     const cartStorage = JSON.parse(String(localStorage.getItem("cart")) || "");
     if (isAddedToCart) {
       const filteredStorage = cartStorage.filter(
         (elem: any) => elem.id !== product.id
+
       );
       localStorage.setItem("cart", JSON.stringify([...filteredStorage]));
     } else {
