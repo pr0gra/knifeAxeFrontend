@@ -16,14 +16,26 @@ export interface IManufacturers {
 
 export function Manufacturers() {
   const [manufacturers, setManufacturers] = useState<IManufacturers[]>([]);
-  useEffect(() => {
-    fetch(
-      "https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf"
-    )
-      .then((response) => response.json())
-      .then((data) => setManufacturers(data));
-  }, []);
 
+  async function getManufacturersData() {
+    try {
+      const response = await fetch(
+        "https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf",
+        {
+          headers: { cors: "no-cors" },
+        }
+      );
+      const data = await response.json();
+      setManufacturers(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getManufacturersData();
+  }, []);
 
   return (
     <section className={styles["manufacturers"]}>
@@ -33,7 +45,10 @@ export function Manufacturers() {
         {manufacturers?.map((manufacturerData, index) => {
           return (
             <div className={styles["manufacturer-containier"]} key={index}>
-              <Link className={styles['button']} href={`/Manufacturer/${manufacturerData.id}`}>
+              <Link
+                className={styles["button"]}
+                href={`/Manufacturer/${manufacturerData.id}`}
+              >
                 <Image
                   className={styles["img"]}
                   width={406}

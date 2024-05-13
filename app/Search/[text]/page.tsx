@@ -11,15 +11,15 @@ function createArraybyLength(length: number) {
   for (let i = 1; i <= length; i++) {
     arr.push(i);
   }
-  if(arr.length === 1 ){
-    return null
+  if (arr.length === 1) {
+    return null;
   }
   return arr;
 }
 console.log(createArraybyLength(10));
 
 export default function Page() {
-  const params: {text: string} = useParams();
+  const params: { text: string } = useParams();
   const [productsData, setProductsData] = useState([]);
   const [metals, setMetals] = useState([]);
   const [manufacturers, setManufacturers] = useState([]);
@@ -29,41 +29,100 @@ export default function Page() {
     metals: [],
     manufacturers: [],
   });
-  useEffect(() => {
-    fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
-        params?.text
-      }${
-        checkboxesList.metals.join(",").length
-          ? `&product_steel=${checkboxesList.metals.join(",")}`
-          : ""
-      }${
-        checkboxesList.manufacturers.join(",").length
-          ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
-          : ""
-      }`
-    )
-      .then((response) => {
-        setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
-        return response.json();
-      })
-      .then((data) => setProductsData(data));
-  }, [checkboxesList, page]);
+
+  async function getProductsData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
+          params?.text
+        }${
+          checkboxesList.metals.join(",").length
+            ? `&product_steel=${checkboxesList.metals.join(",")}`
+            : ""
+        }${
+          checkboxesList.manufacturers.join(",").length
+            ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
+            : ""
+        }`
+      );
+
+      setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
+      const data = await response.json();
+      setProductsData(data);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
+  //       params?.text
+  //     }${
+  //       checkboxesList.metals.join(",").length
+  //         ? `&product_steel=${checkboxesList.metals.join(",")}`
+  //         : ""
+  //     }${
+  //       checkboxesList.manufacturers.join(",").length
+  //         ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
+  //         : ""
+  //     }`
+  //   )
+  //     .then((response) => {
+  //       setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
+  //       return response.json();
+  //     })
+  //     .then((data) => setProductsData(data));
+  // }, [checkboxesList, page]);
+
+  async function getMetalsData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/steels?acf_format=standard&_fields=id,name`
+      );
+      const data = await response.json();
+      setMetals(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/steels?acf_format=standard&_fields=id,name`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setMetals(data));
+  // }, []);
+
+  async function getManufacturersData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf`
+      );
+      const data = await response.json();
+      setManufacturers(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setManufacturers(data));
+  // }, []);
 
   useEffect(() => {
-    fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/steels?acf_format=standard&_fields=id,name`
-    )
-      .then((response) => response.json())
-      .then((data) => setMetals(data));
-  }, []);
-
-  useEffect(() => {
-    fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf`
-    )
-      .then((response) => response.json())
-      .then((data) => setManufacturers(data));
+    getProductsData();
+    getMetalsData();
+    getManufacturersData();
   }, []);
 
   console.log(checkboxesList);
@@ -125,7 +184,15 @@ export default function Page() {
       </div>
       <div className={styles["pagination"]}>
         {createArraybyLength(totalCount)?.map((number, index) => (
-          <button key={index} onClick={()=>{setPage(number)}} className={styles['pagination-number']}>{number}</button>
+          <button
+            key={index}
+            onClick={() => {
+              setPage(number);
+            }}
+            className={styles["pagination-number"]}
+          >
+            {number}
+          </button>
         ))}
       </div>
     </main>

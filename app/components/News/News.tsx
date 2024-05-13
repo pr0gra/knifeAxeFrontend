@@ -19,12 +19,24 @@ export interface INews {
 
 export function News() {
   const [news, setNews] = useState<INews[]>([]);
+  async function getNewsData() {
+    try {
+      const response = await fetch(
+        "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=down",
+        {
+          headers: { cors: "no-cors" },
+        }
+      );
+      const data = await response.json();
+      setNews(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    fetch(
-      "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=down"
-    )
-      .then((response) => response.json())
-      .then((data) => setNews(data));
+    getNewsData();
   }, []);
   return (
     <div className={styles["news"]}>

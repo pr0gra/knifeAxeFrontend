@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import logo from "../../assets/images/LOGO.png";
@@ -6,11 +8,26 @@ import vk from "../../assets/icons/vk.svg";
 import youtube from "../../assets/icons/youtube.svg";
 import phone from "../../assets/icons/phone.svg";
 import letter from "../../assets/icons/letter.svg";
+import { useEffect, useState } from "react";
 
-export default async function Footer() {
-  const footerData = await (
-    await fetch(`http://nozhtopor.na4u.ru/wp-json/wp/v2/site-options`)
-  ).json();
+export default function Footer() {
+  const [footerData, setFooterData] = useState<any>([]);
+  async function footerDataFetch() {
+    try {
+      const response = await fetch(
+        `http://nozhtopor.na4u.ru/wp-json/wp/v2/site-options`
+      );
+      const data = await response.json();
+      setFooterData(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    footerDataFetch();
+  }, []);
+
   return (
     <footer className={styles["footer"]}>
       <div className={styles["wrapper"]}>
@@ -40,7 +57,7 @@ export default async function Footer() {
             <div className={styles["social-media-row"]}>
               <Link
                 className={styles["social-media-row"]}
-                href={footerData.vk_url}
+                href={footerData?.vk_url || "/"}
               >
                 {" "}
                 <Image src={vk} alt="vk" /> <p>Мы в ВКонтакте</p>
@@ -49,7 +66,7 @@ export default async function Footer() {
             <div className={styles["social-media-row"]}>
               <Link
                 className={styles["social-media-row"]}
-                href={footerData.vk_url}
+                href={footerData?.vk_url || "/"}
               >
                 <Image src={youtube} alt="youtube" />
                 <p>Мы в YouTube</p>
@@ -61,11 +78,11 @@ export default async function Footer() {
           <p>Бесплатно по всей России</p>
           <div className={styles["contact-info-row"]}>
             <Image src={phone} alt="phone" />
-            <p>{footerData.phone}</p>
+            <p>{footerData?.phone}</p>
           </div>
           <div className={styles["contact-info-row"]}>
             <Image src={letter} alt="letter" />
-            <p>{footerData.почта}</p>
+            <p>{footerData?.почта}</p>
           </div>
         </div>
       </div>

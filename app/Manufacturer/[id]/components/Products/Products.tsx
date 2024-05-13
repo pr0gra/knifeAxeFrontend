@@ -8,15 +8,25 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 export function Products() {
   const [productsData, setProductsData] = useState([]);
-  const params = useParams<{ id: string; }>();
+  const params = useParams<{ id: string }>();
+
+  async function getProductsData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`
+      );
+      const data = await response.json();
+      setProductsData(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`,
-    )
-      .then((response) => response.json())
-      .then((data) => {console.log(data); setProductsData(data)});
+    getProductsData();
   }, [params]);
-  console.log(productsData);
+
   return (
     <>
       <h2 className={styles["h2"]}>Товары</h2>

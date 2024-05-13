@@ -6,16 +6,24 @@ import { useParams } from "next/navigation";
 
 export function Hero() {
   const [heroData, setHeroData] = useState<any>([]);
-  const params = useParams<{ id: string }>()
+  const params = useParams<{ id: string }>();
+  async function getHeroData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf&include=${params.id}`
+      );
+      const data = await response.json();
+      setHeroData(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    console.log(params)
-    fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf&include=${params.id}`
-    )
-      .then((response) => response.json())
-      .then((data) => setHeroData(data));
+    getHeroData();
   }, [params]);
-  console.log(heroData)
+
   return (
     <div className={styles["hero"]}>
       <Image

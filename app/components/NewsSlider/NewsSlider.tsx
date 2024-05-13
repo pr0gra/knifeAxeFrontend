@@ -20,12 +20,22 @@ interface INewsData {
 
 export function NewsSlider() {
   const [newsData, setNewsData] = useState<INewsData[]>([]);
+
+  async function getNewsData() {
+    try {
+      const response = await fetch(
+        "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=up"
+      );
+      const data = await response.json();
+      setNewsData(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    fetch(
-      "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=up"
-    )
-      .then((response) => response.json())
-      .then((data) => setNewsData(data));
+    getNewsData();
   }, []);
 
   console.log(newsData);
@@ -75,9 +85,9 @@ export function NewsSlider() {
                         <path
                           d="M2 13.0002H32M21.9998 24.3139L33.3135 13.0002L21.9998 1.68652"
                           stroke="#F7F9FC"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </Link>

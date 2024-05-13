@@ -39,16 +39,20 @@ export interface Error {
 export default function Page() {
   const [postData, setPostData] = useState<IPostData[] | null | any>(null);
   const params = useParams();
-  async function getPostData() {
-    const response = await fetch(
-      `https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&include=${params.id}`
-    )
-      .then((data) => data.json())
-      .then((data) => setPostData(data))
-      .catch((err) => console.log(err));
 
-    return response;
+  async function getPostData() {
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&include=${params.id}`
+      );
+      const data = await response.json();
+      setPostData(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   // console.log(fullUrl.split("/")[4], "fullUrlfullUrlfullUrl");
 
   useEffect(() => {
