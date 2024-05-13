@@ -9,7 +9,6 @@ export function Checkbox({
 }) {
   const [checked, setChecked] = useState(false);
   const handleCkeckboxClick = () => {
-    console.log(checked, checkboxType);
     if (checked) {
       if (checkboxType === "metal") {
         setCheckboxesList({
@@ -41,9 +40,10 @@ export function Checkbox({
   };
 
   return (
-    <div onClick={()=>{handleCkeckboxClick()}}>
+    <div >
       <label className={styles["cr-wrapper"]}>
         <input
+        onClick={()=>{handleCkeckboxClick()}}
           className={styles["checkbox"]}
           type="checkbox"
           id="checkbox"

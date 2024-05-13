@@ -7,6 +7,7 @@ import styles from "../styles.module.css";
 import cart from "@/app/assets/icons/cart.svg";
 import heart from "@/app/assets/icons/heart.svg";
 import sanitizeHtml from "sanitize-html";
+
 export default function ProductBox({ product }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isAddedToFavourite, setIsAddedToFavourite] = useState(false);

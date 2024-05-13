@@ -1,13 +1,61 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import Image from "next/image";
+import styles from "./Hero.module.css";
 
 export function Hero() {
-  const [footerData, setFooterData] = useState([]);
+  const [heroData, setHeroData] = useState([]);
   useEffect(() => {
-    fetch("https://nozhtopor.na4u.ru/wp-json/wp/v2/site-options")
+    fetch(
+      "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=up"
+    )
       .then((response) => response.json())
-      .then((data) => setFooterData(data));
+      .then((data) => setHeroData(data));
   }, []);
-  // console.log(footerData)
-  return <section className="hero"></section>;
+  console.log(heroData);
+  return (
+    <section className={styles["hero"]}>
+      <div className={styles["slider"]}>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={1}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {heroData.map((elem, index) => {
+             const element = document.createElement("p");
+             element.innerHTML = elem.acf.post_text;
+             const decodedText = element.textContent;
+            return (
+              <SwiperSlide key={index}>
+                <div className={styles['slider-container']}>
+                  <Image
+                  className={styles['image']}
+                    width={575}
+                    height={575}
+                    src={elem.acf.post_img}
+                    alt="img"
+                  />
+                  <div className={styles['text-content']}>
+                    <p className={styles["title"]}>{elem.title.rendered}</p>
+                    <p className={styles["text"]}>{decodedText}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    </section>
+  );
 }
+7;
