@@ -35,13 +35,13 @@ export function Header() {
   return (
     <header className={styles["header"]}>
       <Link className={styles["logo"]} href="/">
-        <Image width={280} height={81} src={headerData.site_logo} alt="logo" />
+        <Image className={styles['site-logo']} width={280} height={81} src={headerData.site_logo} alt="logo" />
       </Link>
       <div className={styles["location-container"]}>
-        <Image src={location} alt="location" />
+        <Image className={styles['location-img']} src={location} alt="location" />
         <div className={styles["location-text-conatiner"]}>
-          <p className={styles["location-text"]}>{headerData.adress_1} </p>
-          <p className={styles["location-text"]}>{headerData.adress_2}</p>
+          <p className={styles["location-text"]}>{headerData.adress_1}</p>
+           <p className={styles["location-text"]}>{headerData.adress_2}</p>
         </div>
       </div>
       <div className={styles["phone-container"]}>
@@ -55,16 +55,16 @@ export function Header() {
           type="text"
           placeholder="поиск"
         />
-        <Link href={`/Search/${input}`}>
-          <Image src={search} alt="search" />
+        <Link href={input.length ? `/Search/${input}` : `/`}>
+          <Image className={styles['search-img']} src={search} alt="search" />
         </Link>
       </form>
       <div className={styles["panel-container"]}>
         <Link href="/Favourite">
-          <Image src={favourite} alt="favourite" />
+          <Image className={styles['favourite-img']} src={favourite} alt="favourite" />
         </Link>
         <Link href="/CartPage">
-          <Image src={cart} alt="cart" />
+          <Image className={styles['cart-img']}  src={cart} alt="cart" />
         </Link>
       </div>
     </header>

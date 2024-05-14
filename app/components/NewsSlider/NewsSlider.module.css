@@ -6,7 +6,7 @@
 .new-container{
     background: rgba(46, 45, 45, .5);
     height: 600px;
-    max-width:800px ;
+    max-width: 800px ;
     margin-left: 120px;
     padding: 24px 20px 40px 20px;
     color: #fff;
@@ -55,3 +55,37 @@
     padding: 14px;
 }
 
+@media (max-width: 1350px) {
+    .new-container{
+        max-width: 400px ;
+        margin: 0 auto;
+        display: block;
+        height: initial;
+        padding: 24px 60px 20px 60px;
+    }
+    
+
+    .slider{
+        height: 600px;
+    }
+
+    .button{
+        width: initial;
+        font-size: 20px;
+    }
+    .title{
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .subtitle{
+        line-height: 20px;
+        font-size: 15px;
+
+    }
+
+    .subtitle{
+        margin-bottom: 50px;
+    }
+}

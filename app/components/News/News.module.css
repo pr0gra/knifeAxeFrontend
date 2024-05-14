@@ -13,11 +13,16 @@
 
 .news-container{
     display: flex;
-    flex-wrap: wrap;
-    width: 405px;
-    cursor: pointer;
+
+    
     gap: 150px;
 }
+
+.new-containier{
+    cursor: pointer;
+    width:  400px;
+}
+
 
 .new-title{
     font-size: 35px;
@@ -38,7 +43,29 @@
 }
 
 .new-info{
+    word-break: break-all;
     display: flex;
     gap: 30px;
     align-items: center;
 }
+
+@media(max-width: 1560px) {
+
+    .news{
+      width: 100%;
+    }
+  }
+
+
+@media(max-width: 1350px) {
+    .news-container{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .news{
+      width: 100%;
+    }
+    .news-title{
+        text-align: center;
+    }
+  }

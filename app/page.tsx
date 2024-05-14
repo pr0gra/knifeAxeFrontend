@@ -12,7 +12,7 @@ export default function Home() {
       <NewsSlider />
       <Manufacturers />
       <News />
-      <Subscribe />
+      {/* <Subscribe /> */}
     </main>
   );
 }

@@ -40,7 +40,7 @@ export function Hero() {
           className="mySwiper"
         >
           {heroData.map((elem: any, index) => {
-            const element = document.createElement("p");
+            const element = document.createElement("span");
             element.innerHTML = elem.acf.post_text;
             const decodedText = element.textContent;
             return (
@@ -55,7 +55,7 @@ export function Hero() {
                   />
                   <div className={styles["text-content"]}>
                     <p className={styles["title"]}>{elem.title.rendered}</p>
-                    <p className={styles["text"]}>{decodedText}</p>
+                    <p className={styles["text"]}><span>{decodedText}</span></p>
                   </div>
                 </div>
               </SwiperSlide>

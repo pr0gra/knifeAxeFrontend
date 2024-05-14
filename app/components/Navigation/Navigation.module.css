@@ -10,9 +10,9 @@
 .ul {
     display: flex;
     align-items: center;
-    gap: 184px;
+    gap: clamp(50px, 4vw,184px);
 }
 
 .li {
-    font-size: 35px;
+    font-size: clamp(15px, 4vw, 35px);
 }

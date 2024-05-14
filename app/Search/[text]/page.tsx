@@ -33,9 +33,8 @@ export default function Page() {
   async function getProductsData() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
-          params?.text
-        }${
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}
+        ${params?.text.length ? `&search=${params?.text}` : ""}${
           checkboxesList.metals.join(",").length
             ? `&product_steel=${checkboxesList.metals.join(",")}`
             : ""

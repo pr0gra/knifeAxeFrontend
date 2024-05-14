@@ -32,3 +32,22 @@
     all: unset;
     cursor: pointer;
 }
+
+@media(max-width: 1560px) {
+
+    .manufacturers{
+      width: 100%;
+    }
+  }
+
+
+@media(max-width: 1350px) {
+
+    .manufacturers{
+      width: 100%;
+    }
+
+    .title{
+        text-align: center;
+    }
+  }

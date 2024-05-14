@@ -42,6 +42,7 @@
   margin-bottom: clamp(36px, 5vw, 122px);
 }
 .form {
+  margin-bottom: clamp(70px, 5vw, 141px);
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 2vw, 40px);

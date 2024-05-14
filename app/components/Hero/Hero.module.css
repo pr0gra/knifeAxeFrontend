@@ -1,11 +1,14 @@
 .hero{
     position: relative;
     color: #fff;
+    margin-bottom: 55px;
+    padding: 0 5px;
 }
 
 .slider{
     display: flex;
     height: 900px;
+    padding-top: clamp(70px, 5vw, 180px);
 }
 
 .slider-container{
@@ -26,18 +29,55 @@
 }
 
 .title{
-    font-size: 67px;
+    font-size: clamp(15px, 2vw, 67px);
     font-family: stalinist;
+
 }
 
 .text{
-    font-size: 35px;
+    font-size: clamp(10px, 2vw,35px);
     font-family: strong;
     height: 210px;
+    width: 600px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .slider-container{
     display: flex;
+}
+
+.image{
+    border-radius: 100%;
+    width: 575px;
+}
+
+@media (max-width: 1350px) {
+
+    .slider-container{
+        align-items: center;
+       width: 100%;
+        gap: 40px;
+        justify-content: center;
+    }
+
+    .slider{
+        height: 340px;
+    }
+    .text-content{
+        width: 180px;
+        gap: 34px;
+    }
+
+    .image{
+        width: clamp(180px, 5vw, 575px);
+        height: clamp(180px, 5vw, 575px);
+    }
+    .text{
+        height: 174px;
+        width: 220px;
+    }
+    .text span{
+        text-overflow: ellipsis;
+    }
 }

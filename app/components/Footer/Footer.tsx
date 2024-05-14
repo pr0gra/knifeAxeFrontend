@@ -60,7 +60,7 @@ export default function Footer() {
                 href={footerData?.vk_url || "/"}
               >
                 {" "}
-                <Image src={vk} alt="vk" /> <p>Мы в ВКонтакте</p>
+                <Image className={styles['vk-img']} src={vk} alt="vk" /> <p>Мы в ВКонтакте</p>
               </Link>
             </div>
             <div className={styles["social-media-row"]}>
@@ -68,7 +68,7 @@ export default function Footer() {
                 className={styles["social-media-row"]}
                 href={footerData?.vk_url || "/"}
               >
-                <Image src={youtube} alt="youtube" />
+                <Image className={styles['youtube-img']} src={youtube} alt="youtube" />
                 <p>Мы в YouTube</p>
               </Link>
             </div>
@@ -77,11 +77,11 @@ export default function Footer() {
         <div className={styles["contact-info-conatiner"]}>
           <p>Бесплатно по всей России</p>
           <div className={styles["contact-info-row"]}>
-            <Image src={phone} alt="phone" />
+            <Image className={styles['phone-img']} src={phone} alt="phone" />
             <p>{footerData?.phone}</p>
           </div>
           <div className={styles["contact-info-row"]}>
-            <Image src={letter} alt="letter" />
+            <Image className={styles['letter-img']} src={letter} alt="letter" />
             <p>{footerData?.почта}</p>
           </div>
         </div>
