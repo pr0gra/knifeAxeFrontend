@@ -12,10 +12,16 @@ export default function Page() {
   );
 
   return (
-    <div className={styles["favourite-container"]}>
-      {favouriteData?.map((data: any) => {
-        return <ProductBox product={data} key={data.id} />;
-      })}
+    <div className={styles["body"]}>
+      <h1 className={styles["h1"]}>Избранные товары</h1>
+      <p className={styles["p"]}>
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum{" "}
+      </p>
+      <div className={styles["favourite-container"]}>
+        {favouriteData?.map((data: any) => {
+          return <ProductBox product={data} key={data.id} />;
+        })}
+      </div>
     </div>
   );
 }

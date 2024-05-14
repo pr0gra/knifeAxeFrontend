@@ -1,11 +1,35 @@
+.body {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
 .favourite-container {
-  max-width: 1687px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(17px, 5vw, 89px);
   margin-top: clamp(30px, 5vw, 124px);
   margin: 0 auto;
+}
+.h1 {
+  margin-bottom: clamp(15px, 0.805rem + 0.66vw, 24px);
+
+  font-family: var(--strong);
+  font-weight: 400;
+  font-size: clamp(25px, 0.46rem + 5.51vw, 100px);
+
+  color: #fff;
+  text-align: center;
+}
+.p {
+  margin-bottom: clamp(43px, 1.482rem + 6.03vw, 125px);
+
+  font-family: var(--strong);
+  font-weight: 400;
+  font-size: clamp(9px, 0.254rem + 1.54vw, 30px);
+
+  color: #989696;
+  text-align: center;
 }
 
 @media (max-width: 287px) {
