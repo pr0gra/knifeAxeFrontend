@@ -20,7 +20,8 @@
   color: #fff;
 }
 
-.cart-image {
+.cart-image,
+.heart-image {
   width: clamp(10px, -0.045rem + 2.72vw, 46px);
   height: clamp(10px, -0.045rem + 2.72vw, 44px);
 }
