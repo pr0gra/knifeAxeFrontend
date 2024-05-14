@@ -1,0 +1,21 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6.5px, -0.714rem + 4.55vw, 65px);
+  margin-bottom: clamp(0px, -0.9rem + 3.65vw, 47px);
+}
+
+.description-row {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+.description-row p {
+  font-family: var(--strong);
+  font-weight: 400;
+  font-size: clamp(10px, 0.146rem + 1.94vw, 35px);
+
+  color: #fff;
+}
