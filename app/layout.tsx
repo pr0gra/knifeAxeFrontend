@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {Header} from "./components/Header/Header";
+import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{backgroundColor: "#1F1F1F"}} className={inter.className}>
+      <body style={{ backgroundColor: "#1F1F1F" }} className={inter.className}>
         <Header />
         <Navigation />
 
