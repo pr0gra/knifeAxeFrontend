@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { ProductDescription } from "./components/ProductDescription/ProductDescription";
 import styles from "./style.module.css";
+import { CommentBlock } from "./components/CommentBlock/CommentBlock";
 
 export interface IProduct {
   id: number;
@@ -71,7 +72,7 @@ export default function Page() {
   useEffect(() => {
     getPostData();
   }, []);
-  console.log(productData);
+
   return (
     <div className={styles["body"]}>
       {productData && (
@@ -86,6 +87,8 @@ export default function Page() {
           </div>
         </div>
       )}
+      <h2 className={styles["h2"]}>Отзывы клиентов</h2>
+      <CommentBlock />
     </div>
   );
 }
