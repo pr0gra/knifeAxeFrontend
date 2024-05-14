@@ -1,0 +1,31 @@
+.body {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+.hero-container {
+  display: flex;
+  gap: clamp(33px, 0.722rem + 5.44vw, 103px);
+  justify-content: space-between;
+}
+
+.h1 {
+  font-family: var(--stalinist);
+  font-weight: 400;
+  font-size: clamp(15px, 0.172rem + 3.11vw, 55px);
+  margin-bottom: clamp(4px, -0.229rem + 1.94vw, 29px);
+
+  color: #fff;
+}
+
+.p-under-h1 {
+  font-family: var(--strong);
+  font-weight: 400;
+  font-size: clamp(10px, 0.242rem + 1.56vw, 30px);
+
+  color: #989696;
+  margin-bottom: clamp(47px, 2.344rem + 2.41vw, 78px);
+}
+
+.description-block {
+  max-width: clamp(257px, 7.809rem + 33.51vw, 688px);
+}
