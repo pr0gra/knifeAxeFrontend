@@ -14,13 +14,14 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 462px);
 }
 
-.test {
-  width: clamp(200px, 25vw, 1000px);
-  background-color: rgba(255, 255, 255, 0.438);
-  height: clamp(200px, 25vw, 1000px);
-  filter: blur(200px);
-  position: absolute;
-  right: clamp(1px, 22vw, 1000px);
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }

@@ -66,6 +66,7 @@ export default function Page() {
     <div className={styles["page-body"]}>
      <div className={styles['wrapper']}>
         <Navigation />
+      <div className={styles["status-section"]}>
         {!postData && postData?.length !== 0 && (
           <p style={{ fontSize: "30px", color: "white" }}>Загрузка...</p>
         )}
@@ -87,6 +88,7 @@ export default function Page() {
           </>
         )}
      </div>
+    </div>
     </div>
   );
 }

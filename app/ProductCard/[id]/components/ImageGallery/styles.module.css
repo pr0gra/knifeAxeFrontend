@@ -30,38 +30,39 @@
   gap: clamp(10px, 0.434rem + 0.78vw, 20px);
   align-items: center;
 }
-.slider-img{
+.slider-img {
   display: flex;
   margin: 0 auto;
   width: clamp(12.5rem, 3.438rem + 45.31vw, 48.75rem);
   height: clamp(9.375rem, 0.781rem + 42.97vw, 43.75rem);
 }
-.swiper-container{
-  width: 900px;
+.swiper-container {
+  width: clamp(12.5rem, 2.206rem + 51.47vw, 56.25rem);
   margin-bottom: clamp(1.25rem, 6.25vw, 6.25rem);
 }
-
-
-@media (max-width: 1400px) {
-  .swiper-container{
-    width: 700px
+@media (max-width: 1350px) {
+  .buttons-container {
+    justify-content: center;
   }
 }
 
+/* @media (max-width: 1400px) {
+  .swiper-container {
+    width: 700px;
+  }
+}
 
 @media (max-width: 768px) {
-  .swiper-container{
-    width: 400px
+  .swiper-container {
+    width: 400px;
   }
   .cart-button {
     padding: 4px 7px;
   }
 }
 
-
 @media (max-width: 450px) {
-  .swiper-container{
-    width: 200px
+  .swiper-container {
+    width: 200px;
   }
-
-}
+} */

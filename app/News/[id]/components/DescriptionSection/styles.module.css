@@ -5,4 +5,5 @@
   font-weight: 400;
   line-height: clamp(11.94px, 5vw, 65.67px);
   margin-bottom: clamp(53px, 5vw, 352px);
+  padding: 0px 20px;
 }
