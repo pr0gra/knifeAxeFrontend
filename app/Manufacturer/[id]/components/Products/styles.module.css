@@ -24,7 +24,7 @@
   max-width: 1687px;
   display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
   gap: clamp(17px, 5vw, 89px);
   margin-top: clamp(30px, 5vw, 124px);
   padding-bottom: 345px;
