@@ -43,8 +43,10 @@ export function News() {
     <div className={styles["news"]}>
       <p className={styles["news-title"]}>Новости</p>
       <div className={styles["news-container"]}>
-      <Swiper
-          slidesPerView={window.innerWidth < 900 ? 1 : 3}
+        <Swiper
+          slidesPerView={
+            typeof window !== "undefined" && window.innerWidth < 900 ? 1 : 3
+          }
           spaceBetween={30}
           loop={true}
           pagination={{
@@ -58,35 +60,38 @@ export function News() {
             return (
               <SwiperSlide key={index}>
                 <Link
-              href={`/News/${newData.id}`}
-              className={styles["new-containier"]}
-              key={index}
-            >
-              <Image
-                className={styles["main-img"]}
-                width={405}
-                height={392}
-                src={newData.acf.post_img}
-                alt="img"
-              />
-              <div className={styles["new-info"]}>
-                <div className={styles['new-info-text-part']}>
-                  <p className={styles["new-title"]}>
-                    {newData.title.rendered.toLocaleUpperCase()}
-                  </p>
-                  <p className={styles["new-subtitle"]}>
-                    {newData.acf.post_subtitle}
-                  </p>
-                </div>
+                  href={`/News/${newData.id}`}
+                  className={styles["new-containier"]}
+                  key={index}
+                >
+                  <Image
+                    className={styles["main-img"]}
+                    width={405}
+                    height={392}
+                    src={newData.acf.post_img}
+                    alt="img"
+                  />
+                  <div className={styles["new-info"]}>
+                    <div className={styles["new-info-text-part"]}>
+                      <p className={styles["new-title"]}>
+                        {newData.title.rendered.toLocaleUpperCase()}
+                      </p>
+                      <p className={styles["new-subtitle"]}>
+                        {newData.acf.post_subtitle}
+                      </p>
+                    </div>
 
-                <Image src={arrow} className={styles["arrow-img"]} alt="img" />
-              </div>
-            </Link>
+                    <Image
+                      src={arrow}
+                      className={styles["arrow-img"]}
+                      alt="img"
+                    />
+                  </div>
+                </Link>
               </SwiperSlide>
             );
           })}
         </Swiper>
-
       </div>
     </div>
   );
