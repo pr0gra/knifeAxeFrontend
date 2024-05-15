@@ -1,6 +1,15 @@
 .body {
+  background: url('../assets/images/main-back.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  min-height: calc(100vh - 462px - 361px);
+}
+
+.wrapper{
   max-width: 1680px;
   margin: 0 auto;
+  
 }
 
 .favourite-container {

@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import ProductBox from "@/app/Manufacturer/[id]/components/Products/components/ProductBox";
 import { Checkbox } from "./components/Checkbox/Checkbox";
+import { Navigation } from "@/app/components/Navigation/Navigation";
 
 function createArraybyLength(length: number) {
   let arr = [];
@@ -131,78 +132,81 @@ export default function Page() {
   console.log(checkboxesList);
   return (
     <main className={styles["main"]}>
-        <p className={styles["search-title"]}>
-            Поиск {`- ${params?.text === "allProducts" ? "все товары" : decodeURIComponent(params?.text)}`}
-          </p>
-      {(productsData.length && metals.length && manufacturers.length) ? (
-        <>
-        
-          <div className={styles["content-container"]}>
-            <div className={styles["filters-container"]}>
-              <p className={styles["filters-container-title"]}>
-                Для удобства предлагаем воспользоваться фильтром{" "}
-              </p>
-              <div className={styles["filters"]}>
-                <div className={styles["filter-block"]}>
-                  <div className={styles["filters-title-container"]}>
-                    <p className={styles["filters-title"]}>Производители</p>
+      <Navigation />
+       <div className={styles['wrapper']}>
+          <p className={styles["search-title"]}>
+              Поиск {`- ${params?.text === "allProducts" ? "все товары" : decodeURIComponent(params?.text)}`}
+            </p>
+        {(metals.length && manufacturers.length) ? (
+          <>
+          
+            <div className={styles["content-container"]}>
+              <div className={styles["filters-container"]}>
+                <p className={styles["filters-container-title"]}>
+                  Для удобства предлагаем воспользоваться фильтром{" "}
+                </p>
+                <div className={styles["filters"]}>
+                  <div className={styles["filter-block"]}>
+                    <div className={styles["filters-title-container"]}>
+                      <p className={styles["filters-title"]}>Производители</p>
+                    </div>
+                    <div className={styles["filters-options"]}>
+                      {manufacturers.map((manufacturer, index) => {
+                        return (
+                          <Checkbox
+                            setCheckboxesList={setCheckboxesList}
+                            key={index}
+                            data={manufacturer}
+                            checkboxesList={checkboxesList}
+                            checkboxType="manufacturer"
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                  <div className={styles["filters-options"]}>
-                    {manufacturers.map((manufacturer, index) => {
-                      return (
-                        <Checkbox
-                          setCheckboxesList={setCheckboxesList}
-                          key={index}
-                          data={manufacturer}
-                          checkboxesList={checkboxesList}
-                          checkboxType="manufacturer"
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className={styles["filter-block"]}>
-                  <div className={styles["filters-title-container"]}>
-                    <p className={styles["filters-title"]}>Стали</p>
-                  </div>
-
-                  <div className={styles["filters-options"]}>
-                    {metals.map((metal, index) => {
-                      return (
-                        <Checkbox
-                          checkboxesList={checkboxesList}
-                          setCheckboxesList={setCheckboxesList}
-                          key={index}
-                          data={metal}
-                          checkboxType="metal"
-                        />
-                      );
-                    })}
+                  <div className={styles["filter-block"]}>
+                    <div className={styles["filters-title-container"]}>
+                      <p className={styles["filters-title"]}>Стали</p>
+                    </div>
+  
+                    <div className={styles["filters-options"]}>
+                      {metals.map((metal, index) => {
+                        return (
+                          <Checkbox
+                            checkboxesList={checkboxesList}
+                            setCheckboxesList={setCheckboxesList}
+                            key={index}
+                            data={metal}
+                            checkboxType="metal"
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
+  
+              {productsData?.map((product, index) => {
+                return <ProductBox product={product} key={index} />;
+              })}
             </div>
-
-            {productsData?.map((product, index) => {
-              return <ProductBox product={product} key={index} />;
-            })}
-          </div>
-          <div className={styles["pagination"]}>
-            {createArraybyLength(totalCount)?.map((number, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setPage(number);
-                }}
-                className={styles["pagination-number"]}
-                style={{ opacity: number === page ? "0.5" : "1" }}
-              >
-                {number}
-              </button>
-            ))}
-          </div>
-        </>
-      ): <></>}
+            <div className={styles["pagination"]}>
+              {createArraybyLength(totalCount)?.map((number, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setPage(number);
+                  }}
+                  className={styles["pagination-number"]}
+                  style={{ opacity: number === page ? "0.5" : "1" }}
+                >
+                  {number}
+                </button>
+              ))}
+            </div>
+          </>
+        ): <></>}
+       </div>
     </main>
   );
 }

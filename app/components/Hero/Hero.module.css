@@ -81,3 +81,19 @@
         text-overflow: ellipsis;
     }
 }
+
+@media (max-width: 525px) {
+
+    .text{
+        height: 174px;
+        width: 170px;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .slider-container{
+        gap: 5px;
+    }
+   
+}

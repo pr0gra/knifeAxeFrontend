@@ -6,6 +6,13 @@
   margin-top: clamp(16px, 5vw, 127px);
 }
 .container {
+  background: url('../assets/images/main-back.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+.wrapper{
   max-width: 1680px;
   display: flex;
   flex-direction: column;

@@ -44,11 +44,41 @@
 
 @media(max-width: 1350px) {
 
+   
     .manufacturers{
       width: 100%;
     }
 
     .title{
         text-align: center;
+        font-size: 25px;
     }
   }
+
+  @media(max-width: 920px) {
+
+    .title{
+        padding-bottom: 45px;
+        font-size: 15px;
+    }
+
+    .manufacturers-container{
+       gap:40px
+    }
+
+    .img{
+        margin-bottom: 15px;
+    }
+
+    .manufacturer-title{
+        font-family: strong;
+        font-size: 10px;
+        text-align: center;
+    }
+    .img{
+        width: 117px;
+        height: 103px;
+    }
+  }
+
+  

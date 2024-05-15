@@ -2,6 +2,7 @@
   font-size: clamp(20px, 5vw, 100px);
   color: white;
   font-family: strong;
+  padding-bottom: 40px;
   /* margin-bottom: clamp(29px, 1vw, 45px); */
 }
 

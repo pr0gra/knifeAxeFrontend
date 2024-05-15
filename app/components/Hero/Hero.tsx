@@ -30,7 +30,7 @@ export function Hero() {
       <div className={styles["slider"]}>
         <Swiper
           slidesPerView={1}
-          spaceBetween={1}
+          spaceBetween={30}
           loop={true}
           pagination={{
             clickable: true,

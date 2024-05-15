@@ -35,7 +35,7 @@ export function Products() {
           return <ProductBox product={product} key={index} />;
         })}
       </div>
-      <Navigation />
+      {/* <Navigation /> */}
     </>
   );
 }

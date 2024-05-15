@@ -6,6 +6,7 @@ import { ImageGallery } from "./components/ImageGallery/ImageGallery";
 import { ProductDescription } from "./components/ProductDescription/ProductDescription";
 import styles from "./style.module.css";
 import { CommentBlock } from "./components/CommentBlock/CommentBlock";
+import { Navigation } from "@/app/components/Navigation/Navigation";
 
 export interface IProduct {
   id: number;
@@ -75,20 +76,23 @@ export default function Page() {
 
   return (
     <div className={styles["body"]}>
-      {productData && (
-        <div className={styles["hero-container"]}>
-          <ImageGallery data={productData} />
-          <div className={styles["description-block"]}>
-            <h1 className={styles["h1"]}>{productData.title.rendered}</h1>
-            <p className={styles["p-under-h1"]}>
-              {productData.acf.product_description}
-            </p>
-            <ProductDescription data={productData} />
+      <Navigation />
+      <div className={styles['wrapper']}>
+        {productData && (
+          <div className={styles["hero-container"]}>
+            <ImageGallery data={productData} />
+            <div className={styles["description-block"]}>
+              <h1 className={styles["h1"]}>{productData.title.rendered}</h1>
+              <p className={styles["p-under-h1"]}>
+                {productData.acf.product_description}
+              </p>
+              <ProductDescription data={productData} />
+            </div>
           </div>
-        </div>
-      )}
-      <h2 className={styles["h2"]}>Отзывы клиентов</h2>
-      <CommentBlock />
+        )}
+        <h2 className={styles["h2"]}>Отзывы клиентов</h2>
+        <CommentBlock />
+      </div>
     </div>
   );
 }

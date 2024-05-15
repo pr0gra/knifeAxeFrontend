@@ -5,6 +5,11 @@ import styles from "./News.module.css";
 import Image from "next/image";
 import arrow from "../../assets/icons/arrow-to-right.svg";
 import Link from "next/link";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 export interface INews {
   id: number;
   title: { rendered: string };
@@ -31,7 +36,6 @@ export function News() {
       console.log(error);
     }
   }
-
   useEffect(() => {
     getNewsData();
   }, []);
@@ -39,9 +43,21 @@ export function News() {
     <div className={styles["news"]}>
       <p className={styles["news-title"]}>Новости</p>
       <div className={styles["news-container"]}>
-        {news?.map((newData, index) => {
-          return (
-            <Link
+      <Swiper
+          slidesPerView={window.innerWidth < 900 ? 1 : 3}
+          spaceBetween={30}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Navigation, Pagination]}
+          className="mySwiper"
+        >
+          {news?.map((newData, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <Link
               href={`/News/${newData.id}`}
               className={styles["new-containier"]}
               key={index}
@@ -54,7 +70,7 @@ export function News() {
                 alt="img"
               />
               <div className={styles["new-info"]}>
-                <div>
+                <div className={styles['new-info-text-part']}>
                   <p className={styles["new-title"]}>
                     {newData.title.rendered.toLocaleUpperCase()}
                   </p>
@@ -66,8 +82,11 @@ export function News() {
                 <Image src={arrow} className={styles["arrow-img"]} alt="img" />
               </div>
             </Link>
-          );
-        })}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
       </div>
     </div>
   );
