@@ -23,7 +23,7 @@
   height: clamp(149px, 30vw, 514px);
 }
 
-.hero-description{
+.hero-description {
   display: flex;
   flex-direction: column;
   gap: 70px;

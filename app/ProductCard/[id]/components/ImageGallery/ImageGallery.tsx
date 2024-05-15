@@ -69,7 +69,7 @@ export function ImageGallery({ data }: IProps) {
     }
     setIsAddedToCart((prev: boolean) => !prev);
   };
-  console.log(data)
+
   return (
     <div>
       <div className={styles["swiper-container"]}>
@@ -87,7 +87,13 @@ export function ImageGallery({ data }: IProps) {
           {data.acf.product_photos.map((imgUrl, index) => {
             return (
               <SwiperSlide key={index}>
-                <Image className={styles['slider-img']} src={imgUrl} width={800} height={600} alt="img"/>
+                <Image
+                  className={styles["slider-img"]}
+                  src={imgUrl}
+                  width={800}
+                  height={600}
+                  alt="img"
+                />
               </SwiperSlide>
             );
           })}

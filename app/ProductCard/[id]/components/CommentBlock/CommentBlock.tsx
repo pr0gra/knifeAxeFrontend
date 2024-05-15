@@ -8,6 +8,7 @@ import Image from "next/image";
 import sanitizeHtml from "sanitize-html";
 import commentTail from "@/app/assets/icons/comment-tail.svg";
 import commentTailSmall from "@/app/assets/icons/comment-tail-small.svg";
+import { IProduct } from "../../page";
 
 interface IComment {
   id: number;
@@ -52,6 +53,13 @@ interface IComment {
 export function CommentBlock() {
   const { id } = useParams();
   const [commentData, setCommentData] = useState<IComment[]>([]);
+  const [formData, setFormData] = useState({
+    post: id,
+    author_email: "",
+    author_name: "",
+    content: "",
+  });
+  const [errorState, setErrorState] = useState(false);
 
   async function getCommentData() {
     try {
@@ -70,7 +78,31 @@ export function CommentBlock() {
     getCommentData();
   }, []);
 
-  console.log(commentData, "commentData");
+  const handleSubmit = async (event: any) => {
+    setErrorState(false);
+    event.preventDefault();
+    if (!formData.author_email && !formData.author_name && !formData.content) {
+      setErrorState(true);
+      return;
+    }
+    console.log("ДАльше");
+    try {
+      const response = await fetch(
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/comments?post=${id}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = response.json();
+      console.log(data);
+      return data;
+      // const result = await response.json();
+    } catch (error) {
+      console.error("Ошибка при отправке заказа: ", error);
+    }
+  };
   return (
     <div className={styles["comment-container"]}>
       {commentData &&
@@ -116,26 +148,60 @@ export function CommentBlock() {
           );
         })}
 
-      <form className={styles["subscribe-container"]}>
+      <form className={styles["subscribe-container"]} onSubmit={handleSubmit}>
         <input
           id="text"
           placeholder="Email"
           className={styles["input"]}
           type="text"
+          onChange={(event: any) => {
+            setFormData((prev: any) => {
+              return { ...prev, author_email: event.target.value };
+            });
+          }}
         />
         <input
           id="text"
           placeholder="Имя"
           className={styles["input"]}
           type="text"
+          onChange={(event: any) => {
+            setFormData((prev: any) => {
+              return { ...prev, author_name: event.target.value };
+            });
+          }}
         />
         <input
           id="text"
           placeholder="Текст отзыва"
           className={styles["input"]}
           type="text"
+          onChange={(event: any) => {
+            setFormData((prev: any) => {
+              return { ...prev, content: event.target.value };
+            });
+          }}
         />
-        <button className={styles["button"]}>Подписаться</button>
+        {errorState && (
+          <>
+            {!formData.author_email && (
+              <p className={styles["error-message"]}>
+                Поле email не должно быть пустым
+              </p>
+            )}
+            {!formData.author_name && (
+              <p className={styles["error-message"]}>
+                Поле имя не должно быть пустым"
+              </p>
+            )}
+            {!formData.content && (
+              <p className={styles["error-message"]}>
+                Поле текст отзыва не должно быть пустым
+              </p>
+            )}
+          </>
+        )}
+        <button className={styles["button"]}>Оставить отзыв</button>
       </form>
     </div>
   );
