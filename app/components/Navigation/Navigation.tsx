@@ -5,34 +5,51 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function Navigation() {
-  const[activePage, setActivePage] = useState("")
-  const params = useParams()
+  const [activePage, setActivePage] = useState("");
+  const params = useParams();
 
-  useEffect(()=>{
-    if(window.location.href.includes("/News/107")){
-      setActivePage("aboutUs")
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window?.location.href.includes("/News/107")
+    ) {
+      setActivePage("aboutUs");
+    } else if (
+      typeof window !== "undefined" &&
+      window?.location.href.includes("/Search")
+    ) {
+      setActivePage("search");
+    } else if (Object.entries(params).length === 0) {
+      setActivePage("main");
     }
-    else if(window.location.href.includes("/Search")){
-      setActivePage("search")
-    }
-    else if(Object.entries(params).length === 0){
-    setActivePage("main")
-}    console.log(window.location, Object.entries(params).length);
-  },[params]);
-  console.log(activePage)
+  }, [params]);
+  console.log(activePage);
   return (
     <nav className={styles["navigation"]}>
       <ul className={styles["ul"]}>
         <li className={styles["li"]}>
-          <Link style={{opacity: activePage === "main" ? "0.5" : "1"}} href="/">
+          <Link
+            style={{ opacity: activePage === "main" ? "0.5" : "1" }}
+            href="/"
+          >
             Главная
           </Link>
         </li>
         <li className={styles["li"]}>
-          <Link style={{opacity: activePage === "search" ? "0.5" : "1"}} href="/Search/allProducts">Товары</Link>
+          <Link
+            style={{ opacity: activePage === "search" ? "0.5" : "1" }}
+            href="/Search/allProducts"
+          >
+            Товары
+          </Link>
         </li>
         <li className={styles["li"]}>
-          <Link style={{opacity: activePage === "aboutUs" ? "0.5" : "1"}} href="/News/107">О нас</Link>
+          <Link
+            style={{ opacity: activePage === "aboutUs" ? "0.5" : "1" }}
+            href="/News/107"
+          >
+            О нас
+          </Link>
         </li>
       </ul>
     </nav>
