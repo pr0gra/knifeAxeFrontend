@@ -78,9 +78,11 @@
 
 .subscribe-container {
   margin: 0 auto;
-  max-width: 1118px;
-  padding: 59px 79px;
+  width: clamp(11.25rem, 0.603rem + 53.24vw, 56.5rem);
+  padding: clamp(0.625rem, -0.096rem + 3.6vw, 3.688rem)
+    clamp(1.25rem, 0.382rem + 4.34vw, 4.938rem);
   display: flex;
+  gap: clamp(0.625rem, 0.478rem + 0.74vw, 1.25rem);
   flex-direction: column;
   background: rgb(65, 65, 66);
   -webkit-box-shadow: inset 0 0 40px 20px #545456;
@@ -106,17 +108,22 @@
 
 .input::placeholder {
   font-family: strong;
-  font-size: 35px;
+  font-size: clamp(10px, 0.257rem + 1.84vw, 35px);
   color: #d9d9d9;
 }
 
 .input {
   padding: 8px 0;
-  width: 789px;
-  margin: 0 auto 20px auto;
+  width: 100%;
+  /* margin: 0 auto 20px auto; */
+  height: clamp(0.688rem, 0.114rem + 2.87vw, 3.125rem);
 }
 .input[type="text"] {
-  font-size: 35px;
+  font-weight: 400;
+  font-size: clamp(10px, 0.257rem + 1.84vw, 35px);
+
+  color: #d9d9d9;
+
   background: transparent;
   border-bottom: 2px solid #fff;
   color: white;
@@ -126,8 +133,18 @@
 .button {
   color: #d9d9d9;
   font-family: strong;
-  font-size: 35px;
-  margin: 79px auto auto auto;
-  padding: 17px 110px;
+  font-size: clamp(0.938rem, 0.643rem + 1.47vw, 2.188rem);
+  margin: 0 auto;
+  margin-top: clamp(0rem, -1.162rem + 5.81vw, 4.938rem);
+  text-align: center;
+  padding: clamp(0.25rem, 0.059rem + 0.96vw, 1.063rem)
+    clamp(1.375rem, 0.081rem + 6.47vw, 6.875rem);
+
   border: 1px solid #fff;
+}
+
+.error-message {
+  color: red;
+  font-size: clamp(10px, 0.107rem + 2.28vw, 40px);
+  font-family: var(--strong);
 }

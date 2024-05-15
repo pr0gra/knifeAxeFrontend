@@ -10,7 +10,7 @@
   max-width: 1687px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+
   gap: clamp(17px, 5vw, 89px);
   margin-top: clamp(30px, 5vw, 124px);
 }
@@ -43,7 +43,7 @@
   gap: 5px;
   margin-top: clamp(5px, 2vw, 27px);
 }
-@media (max-width: 287px) {
+@media (max-width: 762px) {
   .products-container {
     justify-content: center;
   }

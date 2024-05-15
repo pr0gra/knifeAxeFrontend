@@ -62,14 +62,17 @@ export default function Page() {
 
   return (
     <div className={styles["page-body"]}>
-      {!postData && postData?.length !== 0 && (
-        <p style={{ fontSize: "30px", color: "white" }}>Загрузка...</p>
-      )}
-      {!postData && postData?.length == 0 && (
-        <p style={{ fontSize: "30px", color: "white" }}>
-          Такого поста не существует
-        </p>
-      )}
+      <div className={styles["status-section"]}>
+        {!postData && postData?.length !== 0 && (
+          <p style={{ fontSize: "30px", color: "white" }}>Загрузка...</p>
+        )}
+        {!postData && postData?.length == 0 && (
+          <p style={{ fontSize: "30px", color: "white" }}>
+            Такого поста не существует
+          </p>
+        )}
+      </div>
+
       {postData !== null && postData[0] && (
         <>
           <TitleSection
