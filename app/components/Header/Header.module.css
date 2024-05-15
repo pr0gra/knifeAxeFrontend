@@ -127,7 +127,7 @@
     display: none;
   }
   .input-container {
-    height: 40px;
+    height: 25px;
     grid-row: 3;
     grid-column-start: 1;
     grid-column-end: 4;

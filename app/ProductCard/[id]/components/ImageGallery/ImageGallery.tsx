@@ -6,7 +6,11 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import cartImage from "@/app/assets/icons/cart.svg";
 import heart from "@/app/assets/icons/heart.svg";
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 interface IProps {
   data: IProduct;
 }
@@ -65,10 +69,30 @@ export function ImageGallery({ data }: IProps) {
     }
     setIsAddedToCart((prev: boolean) => !prev);
   };
-
+  console.log(data)
   return (
     <div>
-      <div>{/* ТУт крч еюаный swiper запихнешь */}</div>
+      <div className={styles["swiper-container"]}>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={1}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Navigation, Pagination]}
+          className="mySwiper"
+        >
+          {data.acf.product_photos.map((imgUrl, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <Image className={styles['slider-img']} src={imgUrl} width={800} height={600} alt="img"/>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
       <div className={styles["buttons-container"]}>
         {data && data.acf.product_price && (
           <p className={styles["price"]}>

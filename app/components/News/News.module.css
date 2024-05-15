@@ -2,6 +2,7 @@
     color: #fff;
     width: 1515px;
     margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 .news-title {
@@ -13,7 +14,7 @@
 
 .news-container{
     display: flex;
-
+    height: 500px;
     
     gap: 150px;
 }

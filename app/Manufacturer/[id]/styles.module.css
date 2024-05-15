@@ -1,4 +1,5 @@
 .main {
   max-width: 1680px;
   margin: 0 auto;
+  min-height: calc(100vh - 462px - 361px);
 }

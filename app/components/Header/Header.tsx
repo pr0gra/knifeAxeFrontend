@@ -55,7 +55,7 @@ export function Header() {
           type="text"
           placeholder="поиск"
         />
-        <Link href={input.length ? `/Search/${input}` : `/`}>
+        <Link href={input.length ? `/Search/${input}` : `/Search/allProducts`}>
           <Image className={styles['search-img']} src={search} alt="search" />
         </Link>
       </form>

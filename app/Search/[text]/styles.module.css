@@ -2,6 +2,7 @@
     color: #fff;
     width: 1515px;
     margin: 0 auto;
+	min-height: calc(100vh - 462px - 361px);
 }
 
 .label{
@@ -35,7 +36,9 @@
 	cursor: pointer;
 	margin-bottom: 5px;
 }
-
+.cr-input{
+	margin-right: 10px;
+}
 .cr-wrapper input[type="checkbox"] ~ .cr-input {
 	position: absolute;
 	top: 50%;
@@ -94,7 +97,7 @@
 
 .search-title{
     margin-bottom: 100px;
-    font-size: 100px;
+    font-size: clamp(25px, 0.46rem + 5.51vw, 100px);
     font-family: strong;
 }
 
@@ -110,26 +113,28 @@
 
 
 .filters-container-title{
-    font-size: 30px;
+	font-size: clamp(9px, 0.254rem + 1.54vw, 30px);
     color: #989696;
 }
 
 .filters-container{
     display: flex;
-    grid-column: span 1;
-    grid-row: span 2;
+    grid-column: 1;
+    grid-row-start: 1;
+	grid-row-end: 3;
     gap: 100px;
     flex-direction: column;
-    width: 547px;
+    width: clamp(150px, 25vw, 438px);
+
 }
 
 .filters-title{
-    font-size: 30px;
+	font-size: clamp(10px, 1.8vw, 35px);
 
 }
 
 .cr-wrapper span{
-    font-size: 30px;
+	font-size: clamp(10px, 1.8vw, 35px);
 }
 
 .filters{
@@ -161,4 +166,81 @@
 .pagination-number{
     font-size: 50px;
     font-family: strong;
+}
+
+
+@media (max-width:1440px) {
+	.content-container{
+		padding: 30px;
+		display: grid;
+		margin: 0 auto;
+		justify-content: center;
+		grid-template-columns: repeat(2, auto);
+		grid-template-rows: repeat(auto-fit, 400px);
+		grid-row-gap: 20px;
+		grid-column-gap: 30px;
+		margin-bottom: 167px;
+	}
+	
+	.filters-options{
+
+		padding: 14px 10px;
+		gap: 10px;
+	}
+
+	.search-title{
+		margin-bottom: 25px;
+	}
+
+	.filters-container{
+		gap: 10px;
+	}
+
+	.filters-title-container{
+		padding: 10px;
+	}
+	.main{
+
+		width: 100%;
+
+	}
+
+	.cr-wrapper input[type="checkbox"] ~ .cr-input {
+
+		height: 10px;
+		width: 10px;
+
+
+	}
+
+	.cr-wrapper{
+		padding-left: 15px;
+		display: flex;
+		align-items: center;
+	}
+	
+	.cr-wrapper input[type="radio"] ~ .cr-input {
+		
+		height: 10px;
+		width: 10px;
+
+	}
+	
+}
+
+
+@media (max-width:1100px) {
+	.content-container{
+		grid-template-columns: repeat(2, auto);
+		grid-template-rows: repeat(auto-fit, 300px);
+
+	}
+}
+
+@media (max-width:700px) {
+	.content-container{
+
+		grid-template-rows: repeat(auto-fit, 180px);
+
+	}
 }

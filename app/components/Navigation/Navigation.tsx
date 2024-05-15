@@ -6,7 +6,7 @@ export function Navigation() {
     <nav className={styles['navigation']}>
       <ul className={styles['ul']}>
         <li className={styles['li']}><Link href="/">Главная</Link></li>
-        <li className={styles['li']}><Link href="/">Товары</Link></li>
+        <li className={styles['li']}><Link href="/Search/allProducts">Товары</Link></li>
         <li className={styles['li']}><Link href="/">О нас</Link></li>
       </ul>
     </nav>
