@@ -73,7 +73,9 @@ export default function Page() {
   useEffect(() => {
     getPostData();
   }, []);
-
+  const element = document.createElement("span");
+  element.innerHTML = productData.title.rendered;
+  const decodedText = element.textContent;
   return (
     <div className={styles["body"]}>
       <Navigation />
@@ -82,7 +84,7 @@ export default function Page() {
           <div className={styles["hero-container"]}>
             <ImageGallery data={productData} />
             <div className={styles["description-block"]}>
-              <h1 className={styles["h1"]}>{productData.title.rendered}</h1>
+              <h1 className={styles["h1"]}>{decodedText}</h1>
               <p className={styles["p-under-h1"]}>
                 {productData.acf.product_description}
               </p>
