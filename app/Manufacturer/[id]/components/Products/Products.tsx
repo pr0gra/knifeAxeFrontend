@@ -28,7 +28,8 @@ export function Products() {
   }, [params]);
 
   return (
-    <>
+    <div className={styles["body"]}>
+      {/* <div className={styles["fog"]} /> */}
       <h2 className={styles["h2"]}>Товары</h2>
       <div className={styles["products-container"]}>
         {productsData.map((product, index) => {
@@ -36,6 +37,6 @@ export function Products() {
         })}
       </div>
       <Navigation />
-    </>
+    </div>
   );
 }
