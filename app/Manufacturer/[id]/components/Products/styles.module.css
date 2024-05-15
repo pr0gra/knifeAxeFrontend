@@ -1,3 +1,17 @@
+.body {
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+
+  padding: 0px 20px;
+}
+/* .fog {
+  position: absolute;
+  width: 100%;
+  transform: rotate(45deg);
+  filter: blur(25px);
+  height: ;
+} */
 .product-box {
   max-width: clamp(117px, 20vw, 406px);
 }
@@ -44,6 +58,11 @@
   margin-top: clamp(5px, 2vw, 27px);
 }
 @media (max-width: 762px) {
+  .h2 {
+    text-align: center;
+  }
+}
+@media (max-width: 1176px) {
   .products-container {
     justify-content: center;
   }
