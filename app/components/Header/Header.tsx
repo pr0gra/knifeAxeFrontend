@@ -41,7 +41,6 @@ export function Header() {
         <Image className={styles['location-img']} src={location} alt="location" />
         <div className={styles["location-text-conatiner"]}>
           <p className={styles["location-text"]}>{headerData.adress_1}</p>
-           <p className={styles["location-text"]}>{headerData.adress_2}</p>
         </div>
       </div>
       <div className={styles["phone-container"]}>
@@ -56,15 +55,15 @@ export function Header() {
           placeholder="поиск"
         />
         <Link href={input.length ? `/Search/${input}` : `/Search/allProducts`}>
-          <Image className={styles['search-img']} src={search} alt="search" />
+          <Image className={styles['search-img']} width={22} height={22} src={search} alt="search" />
         </Link>
       </form>
       <div className={styles["panel-container"]}>
         <Link href="/Favourite">
-          <Image className={styles['favourite-img']} src={favourite} alt="favourite" />
+          <Image className={styles['favourite-img']} width={35} height={35} src={favourite} alt="favourite" />
         </Link>
         <Link href="/CartPage">
-          <Image className={styles['cart-img']}  src={cart} alt="cart" />
+          <Image className={styles['cart-img']} width={35} height={35}  src={cart} alt="cart" />
         </Link>
       </div>
     </header>

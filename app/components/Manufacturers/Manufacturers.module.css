@@ -1,13 +1,13 @@
 .title{
     font-family: stalinist;
-    font-size: 47px;
+    font-size: 30px;
     padding-top: 145px;
     padding-bottom: 130px;
 }
 
 .manufacturers{
     color: #fff;
-    width: 1515px;
+    width: 800px;
     margin: 0 auto;
 
 }
@@ -21,7 +21,7 @@
 
 .manufacturer-title{
     font-family: strong;
-    font-size: 35px;
+    font-size: 16px;
     text-align: center;
 }
 

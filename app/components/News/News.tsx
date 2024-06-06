@@ -6,7 +6,6 @@ import Image from "next/image";
 import arrow from "../../assets/icons/arrow-to-right.svg";
 import Link from "next/link";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -66,8 +65,8 @@ export function News() {
                 >
                   <Image
                     className={styles["main-img"]}
-                    width={405}
-                    height={392}
+                    width={180}
+                    height={180}
                     src={newData.acf.post_img}
                     alt="img"
                   />

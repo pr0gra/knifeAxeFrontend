@@ -9,7 +9,6 @@ import { NewsBlock } from "./components/NewsBlock";
 // }
 
 export function NewsBlocks({ data }: any) {
-  console.log(data, "DATADATADATADATADATA");
   return (
     <div>
       <h2 className={styles["h2"]}>Новости</h2>

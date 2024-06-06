@@ -49,8 +49,8 @@ export function Manufacturers() {
               >
                 <Image
                   className={styles["img"]}
-                  width={406}
-                  height={385}
+                  width={218}
+                  height={216}
                   src={manufacturerData.acf.manufacturer_img}
                   alt="img"
                 />

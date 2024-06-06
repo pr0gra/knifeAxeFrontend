@@ -7,21 +7,23 @@
 
 .slider{
     display: flex;
-    height: 900px;
-    padding-top: clamp(70px, 5vw, 180px);
+    height: 450px;
+    
 }
-
 .slider-container{
+    align-items: center;
+    height: 100%;
     display: flex;
     width: 1515px;
-    margin: 0 auto;
-    gap: 280px;
+    margin: auto;
+    gap: 42px;
+    justify-content: center;
 }
 
 .text-content{
     display: flex;
     flex-direction: column;
-    gap: 134px;
+    gap: 20px;
 }
 
 .text{
@@ -29,16 +31,16 @@
 }
 
 .title{
-    font-size: clamp(15px, 2vw, 67px);
+    font-size: clamp(15px, 2vw, 30px);
     font-family: stalinist;
 
 }
 
 .text{
-    font-size: clamp(10px, 2vw,35px);
+    font-size: clamp(10px, 2vw,16px);
     font-family: strong;
     height: 210px;
-    width: 600px;
+    width: 455px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -49,7 +51,6 @@
 
 .image{
     border-radius: 100%;
-    width: 575px;
 }
 
 @media (max-width: 1350px) {

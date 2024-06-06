@@ -85,7 +85,6 @@ export function CommentBlock() {
       setErrorState(true);
       return;
     }
-    console.log("ДАльше");
     try {
       const response = await fetch(
         `https://nozhtopor.na4u.ru/wp-json/wp/v2/comments?post=${id}`,
@@ -96,7 +95,6 @@ export function CommentBlock() {
         }
       );
       const data = response.json();
-      console.log(data);
       return data;
       // const result = await response.json();
     } catch (error) {

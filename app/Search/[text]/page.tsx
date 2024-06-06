@@ -17,7 +17,6 @@ function createArraybyLength(length: number) {
   }
   return arr;
 }
-console.log(createArraybyLength(10));
 
 export default function Page() {
   const params: { text: string } = useParams();
@@ -129,7 +128,6 @@ export default function Page() {
     getManufacturersData();
   }, []);
 
-  console.log(checkboxesList);
   return (
     <main className={styles["main"]}>
       <Navigation />

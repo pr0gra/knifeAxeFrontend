@@ -46,6 +46,20 @@
   }
 }
 
+@media (max-width: 1400px) {
+  .slider-img {
+    width: 260px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 1240px) {
+  .slider-img {
+    width: 170px;
+    height: 149px;
+  }
+}
+
 /* @media (max-width: 1400px) {
   .swiper-container {
     width: 700px;

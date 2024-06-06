@@ -1,8 +1,5 @@
 .navigation {
 
-    height: 140px;
-    display: flex;
-    justify-content: center;
     color: #ffff;
     font-family:"strong";
 }
@@ -10,9 +7,11 @@
 .ul {
     display: flex;
     align-items: center;
-    gap: clamp(50px, 4vw,184px);
+    gap: clamp(20px, 4vw, 226px);
+    padding-top: 45px;
+    justify-content: center;
 }
 
 .li {
-    font-size: clamp(15px, 4vw, 35px);
+    font-size: clamp(15px, 4vw, 20px);
 }

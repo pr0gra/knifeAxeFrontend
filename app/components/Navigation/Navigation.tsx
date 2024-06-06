@@ -23,7 +23,6 @@ export function Navigation() {
       setActivePage("main");
     }
   }, [params]);
-  console.log(activePage);
   return (
     <nav className={styles["navigation"]}>
       <ul className={styles["ul"]}>

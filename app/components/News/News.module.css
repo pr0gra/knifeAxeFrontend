@@ -1,12 +1,12 @@
 .news {
     color: #fff;
-    width: 1515px;
+    width: 800px;
     margin: 0 auto;
     padding-bottom: 100px;
 }
 
 .news-title {
-    font-size: 67px;
+    font-size: 30px;
     font-family: stalinist;
     margin-bottom: 136px;
     padding-top: 220px;
@@ -14,8 +14,6 @@
 
 .news-container{
     display: flex;
- 
-    
     gap: 150px;
 }
 
@@ -27,12 +25,12 @@
 }
 
 .new-title{
-    font-size: 35px;
+    font-size: 20px;
     font-family: interRegular;
 }
 
 .new-subtitle{
-    font-size: 35px;
+    font-size: 16px;
     font-family: strong;
 }
 

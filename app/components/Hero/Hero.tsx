@@ -44,12 +44,12 @@ export function Hero() {
             element.innerHTML = elem.acf.post_text;
             const decodedText = element.textContent;
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide className={styles['swiper-slider-container']} key={index}>
                 <div className={styles["slider-container"]}>
                   <Image
                     className={styles["image"]}
-                    width={575}
-                    height={575}
+                    width={300}
+                    height={300}
                     src={elem.acf.post_img}
                     alt="img"
                   />
