@@ -1,6 +1,6 @@
 .footer {
   font-family: strong;
-  font-size: clamp(10px, 3vw, 35px);
+  font-size: clamp(10px, 2vw,16px);
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(../../assets/images/header-background.png);
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
 }
 
 .wrapper {
-  width: 1550px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
 .left-part {
   color: #c2c2c2;
   display: flex;
-  gap: clamp(20px, 3vw, 180px);
+  gap: 100px;
 }
 
 .social-media-row {
@@ -42,28 +42,28 @@
 }
 
 .logo {
-  margin-bottom: 50px;
-  width: clamp(50px, -0.551rem + 18.38vw, 300px);
-  height: clamp(20px, 0.074rem + 5.88vw, 100px);
+  margin-bottom: 16px;
+  width: clamp(50px, -0.551rem + 18.38vw, 139px);
+  height: clamp(20px, 0.074rem + 5.88vw, 56px);
 }
 .vk-img  {
-  width: clamp(10px, 2vw, 50px);
-  height: clamp(10px, 0.074rem + 5.88vw, 50px);
+  width: clamp(10px, 2vw, 21px);
+  height: clamp(10px, 0.074rem + 5.88vw, 21px);
 }
 
 .letter-img{
-  width: clamp(10px, 2vw, 40px );
-  height: clamp(10px, 0.074rem + 5.88vw, 40px);
+  width: clamp(10px, 2vw, 21px );
+  height: clamp(10px, 0.074rem + 5.88vw, 21px);
 }
 
 .phone-img{
-  width: clamp(10px, 2vw, 40px);
-  height: clamp(10px, 0.074rem + 5.88vw, 40px);
+  width: clamp(10px, 2vw, 21px);
+  height: clamp(10px, 0.074rem + 5.88vw, 21px);
 }
 
 .youtube-img{
-  width: clamp(10px, 2vw, 50px);
-  height: clamp(10px, 0.074rem + 5.88vw, 50px);
+  width: clamp(10px, 2vw, 21px);
+  height: clamp(10px, 0.074rem + 5.88vw, 21px);
 }
 .contact-info-row {
   display: flex;
@@ -84,14 +84,9 @@
   gap: 30px;
 }
 
-@media(max-width: 1720px){
-  .wrapper {
-    width: 100%;
-  }
-}
 
 
-@media(max-width: 1350px) {
+@media(max-width: 1024px) {
   .footer {
     padding: 15px 20px;
   }
@@ -119,4 +114,23 @@
     gap: 3px;
   }
 
+}
+
+
+@media(max-width: 768px) {
+  .description{
+    text-align: center;
+  }
+  .nav{
+    text-align: center;
+  }
+  .wrapper{
+    align-items: center;
+    flex-direction: column;
+  }
+  .left-part{
+    margin-bottom: 20px;
+    gap: 16px;
+    flex-direction: column;
+  }
 }

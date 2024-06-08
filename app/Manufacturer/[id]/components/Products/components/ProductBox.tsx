@@ -101,21 +101,22 @@ export default function ProductBox({
         <Image
           src={product.acf.product_thumbnail}
           alt="emptyImg"
-          width={405}
-          height={385}
+          width={164}
+          height={155}
           className={styles["product-image"]}
         />
         <p className={styles["p-under-image"]}>{decodedText}</p>
       </Link>
       <div className={styles["price-and-icons-container"]}>
         <p className={styles["p-price"]}>{product.acf.product_price} руб.</p>
+        <div className={styles['buttons-container']}>
         <button onClick={handleAddToFavourite}>
           <Image
             style={{ opacity: isAddedToFavourite ? "0.5" : "1" }}
             src={heart}
             alt="heart"
-            width={0}
-            height={0}
+            width={17}
+            height={17}
             className={styles["mini-icon"]}
           />
         </button>
@@ -124,11 +125,12 @@ export default function ProductBox({
             style={{ opacity: isAddedToCart ? "0.5" : "1" }}
             src={cart}
             alt="cart"
-            width={0}
-            height={0}
+            width={17}
+            height={17}
             className={styles["mini-icon"]}
           />
         </button>
+        </div>
       </div>
     </div>
   );

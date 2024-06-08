@@ -13,8 +13,8 @@ export function ImageSection({ image = "" }: IProps) {
     <Image
       src={image}
       alt="image"
-      width={2000}
-      height={1000}
+      width={1169}
+      height={457}
       className={styles["image"]}
     />
   );

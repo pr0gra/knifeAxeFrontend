@@ -1,7 +1,7 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: clamp(6.5px, -0.714rem + 4.55vw, 65px);
+  gap: 8px;
   margin-bottom: clamp(0px, -0.9rem + 3.65vw, 47px);
 }
 
@@ -16,7 +16,7 @@
 .description-row p {
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 0.146rem + 1.94vw, 35px);
+  font-size: clamp(10px, 2vw,16px);
 
   color: #fff;
 }

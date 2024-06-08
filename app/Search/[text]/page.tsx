@@ -31,10 +31,15 @@ export default function Page() {
   });
 
   async function getProductsData() {
+    const per_page = 22;
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}
-        ${params?.text.length && params?.text !== "allProducts" ? `&search=${params?.text}` : ""}${
+        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${per_page}&page=${page}
+        ${
+          params?.text.length && params?.text !== "allProducts"
+            ? `&search=${params?.text}`
+            : ""
+        }${
           checkboxesList.metals.join(",").length
             ? `&product_steel=${checkboxesList.metals.join(",")}`
             : ""
@@ -45,7 +50,9 @@ export default function Page() {
         }`
       );
 
-      setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
+      setTotalCount(
+        Math.ceil(Number(response.headers.get("X-Wp-total")) / per_page)
+      );
       const data = await response.json();
       setProductsData(data);
 
@@ -131,15 +138,19 @@ export default function Page() {
   return (
     <main className={styles["main"]}>
       <Navigation />
-       <div className={styles['wrapper']}>
-          <p className={styles["search-title"]}>
-              Поиск {`- ${params?.text === "allProducts" ? "все товары" : decodeURIComponent(params?.text)}`}
-            </p>
-        {(metals.length && manufacturers.length) ? (
+      <div className={styles["wrapper"]}>
+        {metals.length && manufacturers.length ? (
           <>
-          
             <div className={styles["content-container"]}>
               <div className={styles["filters-container"]}>
+                <p className={styles["search-title"]}>
+                  Поиск{" "}
+                  {`- ${
+                    params?.text === "allProducts"
+                      ? "все товары"
+                      : decodeURIComponent(params?.text)
+                  }`}
+                </p>
                 <p className={styles["filters-container-title"]}>
                   Для удобства предлагаем воспользоваться фильтром{" "}
                 </p>
@@ -166,7 +177,7 @@ export default function Page() {
                     <div className={styles["filters-title-container"]}>
                       <p className={styles["filters-title"]}>Стали</p>
                     </div>
-  
+
                     <div className={styles["filters-options"]}>
                       {metals.map((metal, index) => {
                         return (
@@ -183,12 +194,17 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-  
+
               {productsData?.map((product, index) => {
                 return <ProductBox product={product} key={index} />;
               })}
             </div>
-            <div className={styles["pagination"]}>
+            <div
+              style={{
+                display: createArraybyLength(totalCount) ? "flex" : "none",
+              }}
+              className={styles["pagination"]}
+            >
               {createArraybyLength(totalCount)?.map((number, index) => (
                 <button
                   key={index}
@@ -203,8 +219,10 @@ export default function Page() {
               ))}
             </div>
           </>
-        ): <></>}
-       </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </main>
   );
 }

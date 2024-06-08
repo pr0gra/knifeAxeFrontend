@@ -68,7 +68,12 @@
         height: initial;
         padding: 30px 68px 35px 68px;
     }
-    
+
+    .slider-element{
+        padding: 0 30px;
+        box-sizing: border-box;
+        justify-content: center;
+    }
 
     .slider{
         height: 600px;
@@ -76,18 +81,23 @@
 
     .button{
         width: initial;
-        font-size: 20px;
+        font-size: 10px;
         padding: 7px;
+        
+    }
+
+    .arrow{
+        width: 18px;
     }
     .title{
         text-align: center;
         margin-bottom: 20px;
-        font-size: 20px;
+        font-size: clamp(15px, 2vw, 30px);
     }
 
     .subtitle{
         line-height: 20px;
-        font-size: 15px;
+        font-size: clamp(10px, 2vw, 16px)
 
     }
 

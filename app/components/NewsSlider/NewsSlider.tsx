@@ -49,7 +49,6 @@ export function NewsSlider() {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
           modules={[Pagination]}
           className="mySwiper"
         >
@@ -59,42 +58,41 @@ export function NewsSlider() {
             const decodedText = element.textContent;
             return (
               <SwiperSlide key={index}>
-              
-                  <div
-                    style={{ backgroundImage: `url(${newData.acf.post_img})` }}
-                    className={styles["slider-element"]}
-                  >
-                    <div className={styles["new-container"]}>
-                      <div className={styles["new-text-container"]}>
-                        <p className={styles["title"]}>
-                          {newData.title.rendered}
-                        </p>
-                        <p className={styles["subtitle"]}>{decodedText}</p>
-                      </div>
-                      <Link
-                        href={`/News/${newData.id}`}
-                        className={styles["button"]}
-                      >
-                        <p>Узнать больше</p>
-                        <svg
-                          width="35"
-                          height="26"
-                          viewBox="0 0 35 26"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M2 13.0002H32M21.9998 24.3139L33.3135 13.0002L21.9998 1.68652"
-                            stroke="#F7F9FC"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </Link>
+                <div
+                  style={{ backgroundImage: `url(${newData.acf.post_img})` }}
+                  className={styles["slider-element"]}
+                >
+                  <div className={styles["new-container"]}>
+                    <div className={styles["new-text-container"]}>
+                      <p className={styles["title"]}>
+                        {newData.title.rendered}
+                      </p>
+                      <p className={styles["subtitle"]}>{decodedText}</p>
                     </div>
+                    <Link
+                      href={`/News/${newData.id}`}
+                      className={styles["button"]}
+                    >
+                      <p>Узнать больше</p>
+                      <svg
+                        className={styles["arrow"]}
+                        width="35"
+                        height="26"
+                        viewBox="0 0 35 26"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 13.0002H32M21.9998 24.3139L33.3135 13.0002L21.9998 1.68652"
+                          stroke="#F7F9FC"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </Link>
                   </div>
-              
+                </div>
               </SwiperSlide>
             );
           })}

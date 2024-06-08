@@ -26,6 +26,9 @@ export function CartElement({
   useEffect(() => {
     handleAddToCart();
   }, [count]);
+  const element = document.createElement("span");
+  element.innerHTML = data?.title?.rendered;
+  const decodedText = element.textContent;
   return (
     <div className={styles["container"]}>
       <Image
@@ -36,7 +39,7 @@ export function CartElement({
         className={styles["image"]}
       />
       <div className={styles["description-container"]}>
-        <h3>{data.title.rendered}</h3>
+        <h3>{decodedText}</h3>
         <p>{data.acf.product_description}</p>
       </div>
       <div className={styles["count-container"]}>

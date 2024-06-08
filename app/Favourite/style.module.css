@@ -4,10 +4,11 @@
   background-position: center center;
   background-size: 100% 100%;
   min-height: calc(100vh - 462px - 361px);
+  padding-bottom: 100px;
 }
 
 .wrapper{
-  max-width: 1680px;
+  max-width: 1024px;
   margin: 0 auto;
   
 }
@@ -25,20 +26,32 @@
 
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(25px, 0.46rem + 5.51vw, 100px);
+  font-size: clamp(15px, 2vw, 30px);
 
   color: #fff;
-  text-align: center;
+  text-align: start;
 }
 .p {
   margin-bottom: clamp(43px, 1.482rem + 6.03vw, 125px);
 
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(9px, 0.254rem + 1.54vw, 30px);
+  font-size: clamp(9px, 0.254rem + 1.54vw, 20px);
 
   color: #989696;
-  text-align: center;
+  text-align: start;
+}
+
+
+@media (max-width: 1024px) {
+
+  .h1, .p{
+    text-align: center;
+  }
+
+  .wrapper{
+    width: 100%    
+  }
 }
 
 @media (max-width: 287px) {

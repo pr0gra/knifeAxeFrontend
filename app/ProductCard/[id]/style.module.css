@@ -9,7 +9,7 @@
 }
 
 .wrapper{
-  max-width: 1680px;
+  max-width: 1024px;
   margin: 0 auto;
 }
 .hero-container {
@@ -21,7 +21,7 @@
 .h1 {
   font-family: var(--stalinist);
   font-weight: 400;
-  font-size: clamp(15px, 0.172rem + 3.11vw, 55px);
+  font-size: clamp(15px, 2vw, 30px);
   margin-bottom: clamp(4px, -0.229rem + 1.94vw, 29px);
 
   color: #fff;
@@ -29,7 +29,7 @@
 .h2 {
   font-family: var(--stalinist);
   font-weight: 400;
-  font-size: clamp(15px, 0.172rem + 3.11vw, 55px);
+  font-size: clamp(15px, 2vw, 30px);
   margin-bottom: clamp(53px, 2.254rem + 5.29vw, 125px);
 
   color: #fff;
@@ -39,10 +39,10 @@
 .p-under-h1 {
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 0.242rem + 1.56vw, 30px);
+  font-size: clamp(10px, -0.045rem + 2.72vw, 20px);
 
   color: #989696;
-  margin-bottom: clamp(47px, 2.344rem + 2.41vw, 78px);
+  margin-bottom: 25px;
 }
 
 .description-block {

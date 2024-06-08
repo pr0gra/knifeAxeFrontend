@@ -51,8 +51,7 @@ export function News() {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
-          modules={[Navigation, Pagination]}
+          modules={[Pagination]}
           className="mySwiper"
         >
           {news?.map((newData, index) => {

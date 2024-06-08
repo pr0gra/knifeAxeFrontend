@@ -1,5 +1,5 @@
 .h1 {
-  font-size: clamp(15px, 7vw, 100px);
+  font-size: clamp(15px, 2vw, 30px);
   color: white;
   font-family: strong;
   margin-bottom: 65px;
@@ -13,7 +13,7 @@
 }
 
 .wrapper{
-  max-width: 1680px;
+  max-width: 1024px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -21,10 +21,10 @@
 
 .th-cart {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .th-cart p {
-  font-size: clamp(10px, 3vw, 50px);
+  font-size: clamp(10px, 2vw,16px);
   color: white;
   font-family: strong;
   margin-bottom: clamp(14px, 5vw, 65px);
@@ -43,33 +43,35 @@
   margin-top: clamp(14px, 5vw, 122px);
 }
 .final-price {
-  font-size: clamp(15px, 3vw, 100px);
+  font-size: clamp(15px, 3vw, 30px);
   color: white;
   font-family: strong;
   margin-bottom: clamp(36px, 5vw, 122px);
 }
 .form {
+  width: 518px;
+  margin: 0 auto;
   margin-bottom: clamp(70px, 5vw, 141px);
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 2vw, 40px);
-  padding: 72px;
+  padding: 22px;
   border: 1px solid white;
 }
 .form-button {
-  padding: 26px 99px;
+  padding: 10px 30px;
   border: 1px solid white;
   border-radius: 10px;
-  font-size: clamp(10px, 3vw, 50px);
+  font-size: clamp(10px, 3vw, 16px);
   color: white;
   font-family: strong;
   margin: 0 auto;
-  margin-top: clamp(28px, 8vw, 218px);
+  margin-top: clamp(28px, 8vw, 50px);
 }
 .form-input {
   all: unset;
   width: 100%;
-  font-size: clamp(10px, 3vw, 50px);
+  font-size: clamp(10px, 3vw, 16px);
   color: white;
   font-family: strong;
   border-bottom: 1px solid white !important;
@@ -79,6 +81,9 @@
   font-family: strong;
 }
 @media (max-width: 768px) {
+  .cart-element-container{
+    padding: 0 24px;
+  }
   .h1 {
     text-align: center;
     margin-bottom: 29px;

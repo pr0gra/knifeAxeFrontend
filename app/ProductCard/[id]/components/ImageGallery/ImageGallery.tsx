@@ -82,6 +82,7 @@ export function ImageGallery({ data }: IProps) {
           }}
           navigation={true}
           modules={[Navigation, Pagination]}
+          style={{ "--swiper-navigation-size": "25px",}}
           className="mySwiper"
         >
           {data.acf.product_photos.map((imgUrl, index) => {
@@ -90,8 +91,8 @@ export function ImageGallery({ data }: IProps) {
                 <Image
                   className={styles["slider-img"]}
                   src={imgUrl}
-                  width={800}
-                  height={600}
+                  width={236}
+                  height={224}
                   alt="img"
                 />
               </SwiperSlide>

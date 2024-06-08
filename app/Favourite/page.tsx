@@ -18,7 +18,7 @@ export default function Page() {
      <div className={styles['wrapper']}>
      <Navigation />
         <h1 className={styles["h1"]}>Избранные товары</h1>
-       
+        <p className={styles['p']}>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  </p> 
         <div className={styles["favourite-container"]}>
           {favouriteData?.map((data: any) => {
             return <ProductBox product={data} key={data.id} />;
