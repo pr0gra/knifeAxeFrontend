@@ -150,6 +150,7 @@ button {
 }
 
 :root {
+  --swiper-navigation-size:15px;
   --stalinist: "stalinist";
   --strong: "strong";
   --interRegular: "interRegular";
@@ -165,5 +166,9 @@ button {
   --swiper-navigation-color: #fff;
   --swiper-theme-color: #fff;
   --swiper-navigation-size: 15px;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size: 15px !important;
 }
 

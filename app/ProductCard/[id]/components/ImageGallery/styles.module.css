@@ -69,6 +69,11 @@
   }
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  font-size: 12px;
+}
+
 /* @media (max-width: 1400px) {
   .swiper-container {
     width: 700px;

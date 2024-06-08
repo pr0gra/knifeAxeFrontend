@@ -82,7 +82,6 @@ export function ImageGallery({ data }: IProps) {
           }}
           navigation={true}
           modules={[Navigation, Pagination]}
-          style={{ "--swiper-navigation-size": "25px",}}
           className="mySwiper"
         >
           {data.acf.product_photos.map((imgUrl, index) => {

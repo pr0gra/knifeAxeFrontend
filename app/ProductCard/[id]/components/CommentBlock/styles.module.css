@@ -157,6 +157,8 @@
     height: 33px;}
   .subscribe-container{
     width: 200px;
+    box-sizing: border-box
+    ;
     margin-bottom: 30px;
   }
   .button{

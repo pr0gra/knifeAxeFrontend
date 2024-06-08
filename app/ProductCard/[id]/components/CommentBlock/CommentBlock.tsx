@@ -130,8 +130,8 @@ export function CommentBlock() {
                   className={styles["comment-tail"]}
                   style={{
                     transform: `scaleX(${index % 2 === 0 ? "1" : "-1"})`,
-                    right: index % 2 === 0 ? "" : "-14px",
-                    left: index % 2 === 0 ? "-16px" : "",
+                    right: index % 2 === 0 ? "" : "-20px",
+                    left: index % 2 === 0 ? "-20px" : "",
                   }}
                 />
 
