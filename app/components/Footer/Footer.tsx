@@ -2,7 +2,6 @@
 
 import styles from "./Footer.module.css";
 import Image from "next/image";
-import logo from "../../assets/images/LOGO.png";
 import Link from "next/link";
 import vk from "../../assets/icons/vk.svg";
 import youtube from "../../assets/icons/youtube.svg";
@@ -33,7 +32,12 @@ export default function Footer() {
       <div className={styles["wrapper"]}>
         <div className={styles["left-part"]}>
           <div className={styles["info"]}>
-            <Image className={styles["logo"]} src={logo} alt="logo" />
+            <Image
+              className={styles["logo"]}
+              width={280} height={81}
+              src={footerData.site_logo}
+              alt="logo"
+            />
             <div className={styles["description"]}>
               <p>Lorem, ipsum.</p>
               <p>Lorem, ipsum.</p>
@@ -60,7 +64,8 @@ export default function Footer() {
                 href={footerData?.vk_url || "/"}
               >
                 {" "}
-                <Image className={styles['vk-img']} src={vk} alt="vk" /> <p>Мы в ВКонтакте</p>
+                <Image className={styles["vk-img"]} src={vk} alt="vk" />{" "}
+                <p>Мы в ВКонтакте</p>
               </Link>
             </div>
             <div className={styles["social-media-row"]}>
@@ -68,7 +73,11 @@ export default function Footer() {
                 className={styles["social-media-row"]}
                 href={footerData?.vk_url || "/"}
               >
-                <Image className={styles['youtube-img']} src={youtube} alt="youtube" />
+                <Image
+                  className={styles["youtube-img"]}
+                  src={youtube}
+                  alt="youtube"
+                />
                 <p>Мы в YouTube</p>
               </Link>
             </div>
@@ -77,11 +86,11 @@ export default function Footer() {
         <div className={styles["contact-info-conatiner"]}>
           <p>Бесплатно по всей России</p>
           <div className={styles["contact-info-row"]}>
-            <Image className={styles['phone-img']} src={phone} alt="phone" />
+            <Image className={styles["phone-img"]} src={phone} alt="phone" />
             <p>{footerData?.phone}</p>
           </div>
           <div className={styles["contact-info-row"]}>
-            <Image className={styles['letter-img']} src={letter} alt="letter" />
+            <Image className={styles["letter-img"]} src={letter} alt="letter" />
             <p>{footerData?.почта}</p>
           </div>
         </div>

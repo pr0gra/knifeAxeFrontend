@@ -29,6 +29,7 @@
   align-items: center;
 }
 
+
 .contact-social-media-container {
   display: flex;
   flex-direction: column;
@@ -121,6 +122,17 @@
   .description{
     text-align: center;
   }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo{
+    margin-bottom: 0;
+  }
+  
   .nav{
     text-align: center;
   }
