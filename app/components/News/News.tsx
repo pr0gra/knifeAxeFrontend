@@ -52,11 +52,11 @@ export function News() {
             clickable: true,
           }}
           modules={[Pagination]}
-          className="mySwiper"
+          className={styles['my-swiper']}
         >
           {news?.map((newData, index) => {
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide className={styles['swiper-slide']} key={index}>
                 <Link
                   href={`/News/${newData.id}`}
                   className={styles["new-containier"]}

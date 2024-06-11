@@ -8,7 +8,7 @@
 .news-title {
     font-size: 30px;
     font-family: stalinist;
-    margin-bottom: 119px;
+    margin-bottom: 90px;
     padding-top: 100px;
 }
 
@@ -24,8 +24,15 @@
     padding-bottom: 50px;
 }
 
+.new-containier{
+    padding-top: 30px;
+}
+
 .new-title{
-    font-size: clamp(15px, 2vw, 30px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(15px, 2vw, 20px);
     font-family: interRegular;
 }
 
@@ -39,11 +46,25 @@
     margin-bottom: 32px;
 }
 
+.main-img:hover{
+    -webkit-box-shadow: 0px 0px 21px -1px rgba(255, 255, 255, 0.88);
+}
+
+
+.main-img:active{
+    -webkit-box-shadow: 0px 0px 21px -1px rgba(255, 255, 255, 0.88);
+}
+
 .new-title{
     margin-bottom: 6px;
 }
 
+.swiper-slide{
+    padding-top: 30px;
+}
+
 .new-info{
+    padding-bottom: 40px;
     display: flex;
     gap: 30px;
     align-items: center;
@@ -51,8 +72,12 @@
 }
 .new-info-text-part{
     width: 348px;
-    height: 150px;
 }
+
+.my-swiper{
+    padding: 10px;
+}
+
 .arrow-img{
     width: 30px;
     height: 30px;

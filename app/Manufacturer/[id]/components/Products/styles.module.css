@@ -15,6 +15,15 @@
 .product-box {
   max-width: clamp(117px, 20vw, 406px);
 }
+
+.product-image:hover{
+  -webkit-box-shadow: 0px 0px 21px -1px rgba(255, 255, 255, 0.88);
+}
+
+.product-image:active{
+  -webkit-box-shadow: 0px 0px 21px -1px rgba(255, 255, 255, 0.88);
+}
+
 .h2 {
   font-family: stalinist;
   font-size: clamp(15px, 5vw, 50px);
