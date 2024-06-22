@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import { CartElement } from "./components/CartElement/CartElement";
 import { IFavouriteProduct } from "../Manufacturer/[id]/components/Products/components/ProductBox";
-import axios from "axios";
 import { Navigation } from "../components/Navigation/Navigation";
+import Image from "next/image";
+import cross from "@/app/assets/icons/cross.png";
 
 export default function Page() {
   const [cartData, setCartData] = useState(
@@ -25,6 +26,8 @@ export default function Page() {
     comment: "",
     products: productsToBuy,
   });
+  const [formDataErrorState, setFormDataErrorState] = useState(false);
+  const [showModalWindow, setShowModalWindow] = useState(false);
   function getDefaultValueForProductsToBuyArray() {
     if (cartData) {
       return cartData.map((elem: any) => {
@@ -46,19 +49,15 @@ export default function Page() {
     });
   }, [productsToBuy]);
   const getTotalPrice = () => {
-    let totalPrice = 0;
-
-    productsToBuy.forEach((product) => {
-      const cartItem = cartData.find((item: any) => item.id === product.id);
-
-      if (cartItem) {
-        const price = parseInt(cartItem.acf.product_price);
-        const quantity = product.quantity;
-        totalPrice += price * quantity;
+    const totalCost = productsToBuy.reduce((acc, product) => {
+      const productData = cartData.find((item: any) => item.id === product.id);
+      if (productData) {
+        const price = parseFloat(productData.price);
+        return acc + price * product.quantity;
       }
-    });
-
-    return totalPrice;
+      return acc;
+    }, 0);
+    return totalCost;
   };
 
   const handleSubmit = async (event: any) => {
@@ -84,109 +83,148 @@ export default function Page() {
           }),
         }
       );
+      setShowModalWindow(true);
+
       return response.json();
       // const result = await response.json();
     } catch (error) {
+      setShowModalWindow(false);
       console.error("Ошибка при отправке заказа: ", error);
     }
   };
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["wrapper"]}>
-        <Navigation />
-        <h1 className={styles["h1"]}>Оформление заказа</h1>
-        <div className={styles["th-cart"]}>
-          <p>Изображение</p>
-          <p>Наименование </p>
-          <p>Кол-во</p>
-          <p>Всего</p>
-        </div>
-        <div className={styles["cart-element-container"]}>
-          {cartData &&
-            cartData.map((elem: IFavouriteProduct) => {
-              return (
-                <CartElement
-                  data={elem}
-                  key={elem.id}
-                  setCartData={setCartData}
-                  cartData={cartData}
-                  handleUpdateQuantity={handleUpdateQuantity}
-                />
-              );
-            })}
-        </div>
-        <div className={styles["hz-line"]} />
-        <h2 className={styles["final-price"]}>Итого: {getTotalPrice()} руб.</h2>
-
-        <h3 className={styles["h1"]}>Оформление заказа</h3>
-        <form
-          className={styles["form"]}
-          onSubmit={(e: any) => {
-            e.preventDefault();
-            if (formData.fio && formData.phone && formData.address) {
-              handleSubmit(e);
-              return;
-            }
-
-            return;
-          }}
-        >
-          <input
-            type="text"
-            placeholder="ФИО *"
-            className={styles["form-input"]}
-            onChange={(event: any) => {
-              setFormData((prev: any) => {
-                return { ...prev, fio: event.target.value };
-              });
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Номер телефона *"
-            className={styles["form-input"]}
-            onChange={(event: any) => {
-              setFormData((prev: any) => {
-                return { ...prev, phone: event.target.value };
-              });
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Адрес доставки *"
-            className={styles["form-input"]}
-            onChange={(event: any) => {
-              setFormData((prev: any) => {
-                return { ...prev, address: event.target.value };
-              });
-            }}
-          />
-          <input
-            type="text"
-            placeholder="E-mail"
-            className={styles["form-input"]}
-            onChange={(event: any) => {
-              setFormData((prev: any) => {
-                return { ...prev, email: event.target.value };
-              });
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Комментарий к заказу"
-            className={styles["form-input"]}
-            onChange={(event: any) => {
-              setFormData((prev: any) => {
-                return { ...prev, comment: event.target.value };
-              });
-            }}
-          />
-          <button type="submit" className={styles["form-button"]}>
-            оформить заказ
+    <>
+      {showModalWindow && (
+        <div className={styles["modal-window"]}>
+          <button onClick={() => setShowModalWindow(false)}>
+            <Image src={cross} width={21} height={21} alt="cross" />
           </button>
-        </form>
+          <p>
+            Ваш заказ успешно оформлен!
+            <br /> В скором времени наш менеджер свяжется с Вами!
+          </p>
+        </div>
+      )}
+      <div className={styles["container"]}>
+        <div className={styles["wrapper"]}>
+          <Navigation />
+          <h1 className={styles["h1"]}>Оформление заказа</h1>
+          <div className={styles["th-cart"]}>
+            <p>Изображение</p>
+            <p>Наименование </p>
+            <p>Кол-во</p>
+            <p>Всего</p>
+          </div>
+          <div className={styles["cart-element-container"]}>
+            {cartData &&
+              cartData.map((elem: IFavouriteProduct) => {
+                return (
+                  <CartElement
+                    data={elem}
+                    key={elem.id}
+                    setCartData={setCartData}
+                    cartData={cartData}
+                    handleUpdateQuantity={handleUpdateQuantity}
+                  />
+                );
+              })}
+          </div>
+          <div className={styles["hz-line"]} />
+          <h2 className={styles["final-price"]}>
+            Итого: {getTotalPrice()} руб.
+          </h2>
+
+          <h3 className={styles["h1"]}>Оформление заказа</h3>
+          <form
+            className={styles["form"]}
+            onSubmit={(e: any) => {
+              setFormDataErrorState(false);
+              e.preventDefault();
+              if (
+                formData.fio !== "" &&
+                formData.phone !== "" &&
+                formData.address !== ""
+              ) {
+                handleSubmit(e);
+                return;
+              } else {
+                setShowModalWindow(false);
+                setFormDataErrorState(true);
+              }
+
+              return;
+            }}
+          >
+            <input
+              type="text"
+              placeholder="ФИО *"
+              className={styles["form-input"]}
+              onChange={(event: any) => {
+                setFormData((prev: any) => {
+                  return { ...prev, fio: event.target.value };
+                });
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Номер телефона *"
+              className={styles["form-input"]}
+              onChange={(event: any) => {
+                setFormData((prev: any) => {
+                  return { ...prev, phone: event.target.value };
+                });
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Адрес доставки *"
+              className={styles["form-input"]}
+              onChange={(event: any) => {
+                setFormData((prev: any) => {
+                  return { ...prev, address: event.target.value };
+                });
+              }}
+            />
+            <input
+              type="text"
+              placeholder="E-mail"
+              className={styles["form-input"]}
+              onChange={(event: any) => {
+                setFormData((prev: any) => {
+                  return { ...prev, email: event.target.value };
+                });
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Комментарий к заказу"
+              className={styles["form-input"]}
+              onChange={(event: any) => {
+                setFormData((prev: any) => {
+                  return { ...prev, comment: event.target.value };
+                });
+              }}
+            />
+            <div>
+              {formDataErrorState && formData.fio === "" && (
+                <p style={{ color: "red" }}>Поле ФИО обязательное</p>
+              )}
+              {formDataErrorState && formData.phone === "" && (
+                <p style={{ color: "red" }}>
+                  Поле с номером телефона обязательное
+                </p>
+              )}
+              {formDataErrorState && formData.address === "" && (
+                <p style={{ color: "red" }}>Поле с адресом обязательное</p>
+              )}
+            </div>
+            <button type="submit" className={styles["form-button"]}>
+              оформить заказ
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

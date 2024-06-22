@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { ImageGallery } from "./components/ImageGallery/ImageGallery";
+import { ImageGalleryComponent } from "./components/ImageGalleryComponent/ImageGalleryComponent";
 import { ProductDescription } from "./components/ProductDescription/ProductDescription";
 import styles from "./style.module.css";
 import { CommentBlock } from "./components/CommentBlock/CommentBlock";
@@ -16,7 +16,7 @@ export interface IProduct {
   images: [];
   price: string;
   acf: {
-    short_description:string;
+    short_description: string;
     product_price: string;
     description: string;
     product_photos: string[];
@@ -46,7 +46,7 @@ export default function Page() {
     images: [],
     price: "",
     acf: {
-      short_description:"",
+      short_description: "",
       product_price: "",
       description: "",
       product_photos: [""],
@@ -66,8 +66,8 @@ export default function Page() {
       ax_weight: "",
     },
   });
-  const [decodedName, setDecodedName] = useState<any>(<span></span>)
-  const [decodedDesc,setDecodedDesc] = useState<any>(<span></span>)
+  const [decodedName, setDecodedName] = useState<any>(<span></span>);
+  const [decodedDesc, setDecodedDesc] = useState<any>(<span></span>);
   async function getPostData() {
     try {
       const response = await fetch(
@@ -84,17 +84,16 @@ export default function Page() {
     getPostData();
   }, []);
 
-  useEffect(()=>{
-    console.log(productData)
-    if(!productData.name) return
+  useEffect(() => {
+    if (!productData.name) return;
     let element = document.createElement("span");
     element.innerHTML = productData.name;
     let decodedText = element.textContent;
-    setDecodedName(decodedText)
-    element.innerHTML = productData.description
-    let decodedDesc = element.textContent
-    setDecodedDesc(decodedDesc)
-  },[productData])
+    setDecodedName(decodedText);
+    element.innerHTML = productData.description;
+    let decodedDesc = element.textContent;
+    setDecodedDesc(decodedDesc);
+  }, [productData]);
 
   return (
     <div className={styles["body"]}>
@@ -102,11 +101,13 @@ export default function Page() {
       <div className={styles["wrapper"]}>
         {productData && (
           <div className={styles["hero-container"]}>
-            <ImageGallery data={productData} />
+            <ImageGalleryComponent data={productData} />
             <div className={styles["description-block"]}>
               <h1 className={styles["h1"]}>{decodedName}</h1>
-              <p className={styles["p-under-h1"]}>{productData?.acf?.short_description}</p>
-              <ProductDescription  data={productData} />
+              <p className={styles["p-under-h1"]}>
+                {productData?.acf?.short_description}
+              </p>
+              <ProductDescription data={productData} />
             </div>
           </div>
         )}

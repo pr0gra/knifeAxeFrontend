@@ -185,3 +185,12 @@ button {
   transition: 0.2s all;
 }
 
+.image-gallery-svg {
+  height: 30px !important;
+}
+.image-gallery-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
