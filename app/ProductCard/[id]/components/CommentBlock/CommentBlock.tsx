@@ -9,6 +9,7 @@ import sanitizeHtml from "sanitize-html";
 import commentTail from "@/app/assets/icons/comment-tail.svg";
 import commentTailSmall from "@/app/assets/icons/comment-tail-small.svg";
 import { IProduct } from "../../page";
+import { consumer_key, consumer_secret } from "@/app/assets/data/wooCommerce";
 
 interface IComment {
   id: number;
@@ -87,7 +88,7 @@ export function CommentBlock() {
     }
     try {
       const response = await fetch(
-        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/comments?post=${id}`,
+        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/comments?post=${id}?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -98,7 +99,7 @@ export function CommentBlock() {
       return data;
       // const result = await response.json();
     } catch (error) {
-      console.error("Ошибка при отправке заказа: ", error);
+      console.error("Ошибка при отправке комментария: ", error);
     }
   };
   return (

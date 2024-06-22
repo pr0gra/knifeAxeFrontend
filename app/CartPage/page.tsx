@@ -8,12 +8,14 @@ import axios from "axios";
 import { Navigation } from "../components/Navigation/Navigation";
 
 export default function Page() {
-  const [cartData, setCartData] = useState(    typeof window !== "undefined"
-    ? JSON.parse(String(localStorage.getItem("cart")) || "")
-    : []) 
+  const [cartData, setCartData] = useState(
+    typeof window !== "undefined"
+      ? JSON.parse(String(localStorage.getItem("cart")) || "")
+      : []
+  );
 
   const [productsToBuy, setProductsToBuy] = useState<
-    { id: number; quantity: number }[]
+    { product_id: number; quantity: number }[]
   >(getDefaultValueForProductsToBuyArray());
   const [formData, setFormData] = useState({
     fio: "",
@@ -26,7 +28,7 @@ export default function Page() {
   function getDefaultValueForProductsToBuyArray() {
     if (cartData) {
       return cartData.map((elem: any) => {
-        return { id: elem.id, quantity: 1 };
+        return { product_id: elem.id, quantity: 1 };
       });
     } else return [];
   }
@@ -34,7 +36,7 @@ export default function Page() {
   const handleUpdateQuantity = (id: number, count: number) => {
     setProductsToBuy((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: count } : item
+        item.product_id === id ? { ...item, quantity: count } : item
       )
     );
   };
@@ -61,37 +63,6 @@ export default function Page() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const formData = {
-      payment_method: "bacs",
-      payment_method_title: "Direct Bank Transfer",
-      set_paid: true,
-      billing: {
-        first_name: "John",
-        last_name: "Doe",
-        address_1: "123 Main St",
-        city: "Anytown",
-        state: "CA",
-        postcode: "12345",
-        country: "US",
-        email: "john.doe@example.com",
-        phone: "(555) 555-5555",
-      },
-      shipping: {
-        first_name: "John",
-        last_name: "Doe",
-        address_1: "123 Main St",
-        city: "Anytown",
-        state: "CA",
-        postcode: "12345",
-        country: "US",
-      },
-      line_items: [
-        {
-          product_id: 93,
-          quantity: 2,
-        },
-      ],
-    };
     try {
       const response = await fetch(
         "https://nozhtoporshop.na4u.ru/wp-json/wc/v3/orders?consumer_key=ck_13009f71f161c12f3757c121fe49020ce886db4e&consumer_secret=cs_e44d7f210c62424bd7989b6efda5b65bb4ce9f27",
@@ -99,40 +70,18 @@ export default function Page() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-      payment_method: "bacs",
-      payment_method_title: "Direct Bank Transfer",
-      set_paid: false,
-      billing: {
-        first_name: "John",
-        last_name: "Doe",
-        address_1: "123 Main St",
-        city: "Anytown",
-        state: "CA",
-        postcode: "12345",
-        country: "US",
-        email: "john.doe@example.com",
-        phone: "(555) 555-5555",
-      },
-      shipping: {
-        first_name: "John",
-        last_name: "Doe",
-        address_1: "123 Main St",
-        city: "Anytown",
-        state: "CA",
-        postcode: "12345",
-        country: "US",
-      },
-      line_items: [
-        {
-          product_id: 84,
-          quantity: 2,
-        },
-        {
-          product_id: 91,
-          quantity: 2,
-        },
-      ],
-    }),
+            set_paid: false,
+            customer_note: formData.comment,
+            billing: {
+              first_name: formData.fio,
+              email: formData.email,
+              phone: formData.phone,
+            },
+            shipping: {
+              address_1: formData.address,
+            },
+            line_items: [...productsToBuy],
+          }),
         }
       );
       return response.json();
@@ -162,7 +111,6 @@ export default function Page() {
                   key={elem.id}
                   setCartData={setCartData}
                   cartData={cartData}
-                  productsToBuy={productsToBuy}
                   handleUpdateQuantity={handleUpdateQuantity}
                 />
               );

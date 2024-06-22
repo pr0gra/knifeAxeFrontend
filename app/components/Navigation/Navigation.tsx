@@ -24,6 +24,7 @@ export function Navigation() {
     }
   }, [params]);
   return (
+    <>
     <nav className={styles["navigation"]}>
       <ul className={styles["ul"]}>
         <li className={styles["li"]}>
@@ -52,5 +53,7 @@ export function Navigation() {
         </li>
       </ul>
     </nav>
+    <div className={styles['mobile-space']}></div>
+    </>
   );
 }

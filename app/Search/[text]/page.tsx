@@ -35,20 +35,7 @@ export default function Page() {
     const per_page = 22;
     try {
       const response = await fetch(
-        `https://nozhtoporshop.na4u.ru/wp-json/wc/v3/products?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&per_page=${per_page}&page=${page}
-        ${
-          params?.text.length && params?.text !== "allProducts"
-            ? `&search=${params?.text}`
-            : ""
-        }${
-          checkboxesList.metals.join(",").length
-            ? `&product_steel=${checkboxesList.metals.join(",")}`
-            : ""
-        }${
-          checkboxesList.manufacturers.join(",").length
-            ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
-            : ""
-        }`
+        `https://nozhtoporshop.na4u.ru/wp-json/wc/v3/products?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&per_page=${per_page}&page=${page}`
       );
 
       setTotalCount(
@@ -63,27 +50,33 @@ export default function Page() {
     }
   }
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&per_page=${13}&page=${page}&search=${
-  //       params?.text
-  //     }${
-  //       checkboxesList.metals.join(",").length
-  //         ? `&product_steel=${checkboxesList.metals.join(",")}`
-  //         : ""
-  //     }${
-  //       checkboxesList.manufacturers.join(",").length
-  //         ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
-  //         : ""
-  //     }`
-  //   )
-  //     .then((response) => {
-  //       setTotalCount(Math.ceil(Number(response.headers.get("X-Wp-total")) / 13));
-  //       return response.json();
-  //     })
-  //     .then((data) => setProductsData(data));
-  // }, [checkboxesList, page]);
-
+  async function getFilteredProductsData() {
+    const per_page = 22;
+    try {
+      const response = await fetch(
+        `https://nozhtoporshop.na4u.ru/wp-json/custom/v1/products?per_page=${per_page}&page=${page}
+        ${
+          params?.text.length && params?.text !== "allProducts"
+            ? `&search=${params?.text}`
+            : ""
+        }${
+          checkboxesList.metals.join(",").length
+            ? `&product_steel=${checkboxesList.metals.join(",")}`
+            : ""
+        }${
+          checkboxesList.manufacturers.join(",").length
+            ? `&manufacturer_id=${checkboxesList.manufacturers.join(",")}`
+            : ""
+        }`
+      );
+      const data = await response.json();
+      setTotalCount(data.total / per_page);
+      console.log(data);
+      setProductsData(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async function getMetalsData() {
     try {
       const response = await fetch(
@@ -96,14 +89,6 @@ export default function Page() {
       console.log(error);
     }
   }
-
-  // useEffect(() => {
-  //   fetch(
-  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/steels?acf_format=standard&_fields=id,name`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setMetals(data));
-  // }, []);
 
   async function getManufacturersData() {
     try {
@@ -118,20 +103,12 @@ export default function Page() {
     }
   }
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://nozhtopor.na4u.ru/wp-json/wp/v2/manufacturers?acf_format=standard&_fields=id,name,acf`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setManufacturers(data));
-  // }, []);
-
   useEffect(() => {
-    getProductsData();
-  }, [checkboxesList, page]);
-
-  useEffect(() => {
-    getProductsData();
+    if (params?.text.length && params?.text !== "allProducts") {
+      getFilteredProductsData();
+    } else {
+      getProductsData();
+    }
     getMetalsData();
     getManufacturersData();
   }, []);
@@ -193,7 +170,21 @@ export default function Page() {
                       })}
                     </div>
                   </div>
-                  <button className={styles["filter-button"]}><p className={styles['button-text']}>Найти</p></button>
+                  <button
+                    onClick={() => {
+                      if (
+                        !checkboxesList.metals.length &&
+                        !checkboxesList.manufacturers.length
+                      ) {
+                        getProductsData();
+                      } else {
+                        getFilteredProductsData();
+                      }
+                    }}
+                    className={styles["filter-button"]}
+                  >
+                    <p className={styles["button-text"]}>Найти</p>
+                  </button>
                 </div>
               </div>
 
@@ -212,6 +203,7 @@ export default function Page() {
                   key={index}
                   onClick={() => {
                     setPage(number);
+                    getFilteredProductsData();
                   }}
                   className={styles["pagination-number"]}
                   style={{ opacity: number === page ? "0.5" : "1" }}

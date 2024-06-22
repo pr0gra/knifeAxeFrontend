@@ -10,9 +10,10 @@ import sanitizeHtml from "sanitize-html";
 import Link from "next/link";
 
 export interface IFavouriteProduct {
+  stock_status: string;
   id: number;
   name: string;
-  images: {src: string}[];
+  images: { src: string }[];
   acf: {
     ax_height: string;
     ax_weight: string;
@@ -32,7 +33,7 @@ export interface IFavouriteProduct {
     product_thumbnail: string;
     steel_hardness: string;
   };
-  price:string;
+  price: string;
 }
 
 export default function ProductBox({
@@ -109,29 +110,36 @@ export default function ProductBox({
         />
         <p className={styles["p-under-image"]}>{decodedText}</p>
       </Link>
+      <p className={styles["stock-status"]}>
+        {product.stock_status === "instock"
+          ? "В наличии"
+          : product.stock_status === "outofstock"
+          ? "Нет в наличии"
+          : "Предзаказ"}
+      </p>
       <div className={styles["price-and-icons-container"]}>
         <p className={styles["p-price"]}>{product.price} руб.</p>
-        <div className={styles['buttons-container']}>
-        <button onClick={handleAddToFavourite}>
-          <Image
-            style={{ opacity: isAddedToFavourite ? "0.5" : "1" }}
-            src={heart}
-            alt="heart"
-            width={17}
-            height={17}
-            className={styles["mini-icon"]}
-          />
-        </button>
-        <button onClick={handleAddToCart}>
-          <Image
-            style={{ opacity: isAddedToCart ? "0.5" : "1" }}
-            src={cart}
-            alt="cart"
-            width={17}
-            height={17}
-            className={styles["mini-icon"]}
-          />
-        </button>
+        <div className={styles["buttons-container"]}>
+          <button onClick={handleAddToFavourite}>
+            <Image
+              style={{ opacity: isAddedToFavourite ? "0.5" : "1" }}
+              src={heart}
+              alt="heart"
+              width={17}
+              height={17}
+              className={styles["mini-icon"]}
+            />
+          </button>
+          <button onClick={handleAddToCart}>
+            <Image
+              style={{ opacity: isAddedToCart ? "0.5" : "1" }}
+              src={cart}
+              alt="cart"
+              width={17}
+              height={17}
+              className={styles["mini-icon"]}
+            />
+          </button>
         </div>
       </div>
     </div>

@@ -96,7 +96,6 @@ export default function Page() {
     setDecodedDesc(decodedDesc)
   },[productData])
 
-
   return (
     <div className={styles["body"]}>
       <Navigation />

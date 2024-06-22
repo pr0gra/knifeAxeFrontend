@@ -9,13 +9,11 @@ import { IProduct } from "@/app/ProductCard/[id]/page";
 
 export function CartElement({
   data,
-  productsToBuy,
   setCartData,
   cartData,
   handleUpdateQuantity,
 }: {
   data: IFavouriteProduct;
-  productsToBuy: { id: number; quantity: number }[];
   cartData: any;
   setCartData: any;
   handleUpdateQuantity: any;
