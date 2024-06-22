@@ -49,6 +49,11 @@
   max-width: clamp(257px, 7.809rem + 33.51vw, 688px);
 }
 
+.description{
+  margin-top: 50px;
+  color: #989696;
+}
+
 
 @media (max-width: 1400px) {
   .hero-container{

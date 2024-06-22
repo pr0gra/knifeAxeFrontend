@@ -8,10 +8,10 @@ import axios from "axios";
 import { Navigation } from "../components/Navigation/Navigation";
 
 export default function Page() {
-  const cartData =
-    typeof window !== "undefined"
-      ? JSON.parse(String(localStorage.getItem("cart")) || "")
-      : [];
+  const [cartData, setCartData] = useState(    typeof window !== "undefined"
+    ? JSON.parse(String(localStorage.getItem("cart")) || "")
+    : []) 
+
   const [productsToBuy, setProductsToBuy] = useState<
     { id: number; quantity: number }[]
   >(getDefaultValueForProductsToBuyArray());
@@ -61,14 +61,78 @@ export default function Page() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
+    const formData = {
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      set_paid: true,
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "123 Main St",
+        city: "Anytown",
+        state: "CA",
+        postcode: "12345",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555",
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "123 Main St",
+        city: "Anytown",
+        state: "CA",
+        postcode: "12345",
+        country: "US",
+      },
+      line_items: [
+        {
+          product_id: 93,
+          quantity: 2,
+        },
+      ],
+    };
     try {
       const response = await fetch(
-        "https://nozhtopor.na4u.ru/wp-json/custom/v2/order/",
+        "https://nozhtoporshop.na4u.ru/wp-json/wc/v3/orders?consumer_key=ck_13009f71f161c12f3757c121fe49020ce886db4e&consumer_secret=cs_e44d7f210c62424bd7989b6efda5b65bb4ce9f27",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      set_paid: false,
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "123 Main St",
+        city: "Anytown",
+        state: "CA",
+        postcode: "12345",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555",
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "123 Main St",
+        city: "Anytown",
+        state: "CA",
+        postcode: "12345",
+        country: "US",
+      },
+      line_items: [
+        {
+          product_id: 84,
+          quantity: 2,
+        },
+        {
+          product_id: 91,
+          quantity: 2,
+        },
+      ],
+    }),
         }
       );
       return response.json();
@@ -80,7 +144,7 @@ export default function Page() {
 
   return (
     <div className={styles["container"]}>
-     <div className={styles['wrapper']}>
+      <div className={styles["wrapper"]}>
         <Navigation />
         <h1 className={styles["h1"]}>Оформление заказа</h1>
         <div className={styles["th-cart"]}>
@@ -96,6 +160,8 @@ export default function Page() {
                 <CartElement
                   data={elem}
                   key={elem.id}
+                  setCartData={setCartData}
+                  cartData={cartData}
                   productsToBuy={productsToBuy}
                   handleUpdateQuantity={handleUpdateQuantity}
                 />
@@ -104,7 +170,7 @@ export default function Page() {
         </div>
         <div className={styles["hz-line"]} />
         <h2 className={styles["final-price"]}>Итого: {getTotalPrice()} руб.</h2>
-  
+
         <h3 className={styles["h1"]}>Оформление заказа</h3>
         <form
           className={styles["form"]}
@@ -114,7 +180,7 @@ export default function Page() {
               handleSubmit(e);
               return;
             }
-  
+
             return;
           }}
         >
@@ -172,7 +238,7 @@ export default function Page() {
             оформить заказ
           </button>
         </form>
-     </div>
+      </div>
     </div>
   );
 }

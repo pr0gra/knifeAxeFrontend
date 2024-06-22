@@ -7,13 +7,18 @@ import { ProductDescription } from "./components/ProductDescription/ProductDescr
 import styles from "./style.module.css";
 import { CommentBlock } from "./components/CommentBlock/CommentBlock";
 import { Navigation } from "@/app/components/Navigation/Navigation";
+import { consumer_key, consumer_secret } from "@/app/assets/data/wooCommerce";
 
 export interface IProduct {
   id: number;
-  title: { rendered: string };
+  name: string;
+  description: string;
+  images: [];
+  price: string;
   acf: {
+    short_description:string;
     product_price: string;
-    product_description: string;
+    description: string;
     product_photos: string[];
     product_thumbnail: string;
     manufacturer_id: number;
@@ -36,10 +41,14 @@ export default function Page() {
   const { id } = useParams();
   const [productData, setProductData] = useState<IProduct>({
     id: 0,
-    title: { rendered: "" },
+    name: "",
+    description: "",
+    images: [],
+    price: "",
     acf: {
+      short_description:"",
       product_price: "",
-      product_description: "",
+      description: "",
       product_photos: [""],
       product_thumbnail: "",
       manufacturer_id: 0,
@@ -57,14 +66,15 @@ export default function Page() {
       ax_weight: "",
     },
   });
-
+  const [decodedName, setDecodedName] = useState<any>(<span></span>)
+  const [decodedDesc,setDecodedDesc] = useState<any>(<span></span>)
   async function getPostData() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?acf_format=standard&_fields=id,title,acf&include=${id}`
+        `https://nozhtoporshop.na4u.ru/wp-json/wc/v3/products/${id}?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`
       );
       const data = await response.json();
-      setProductData(data[0]);
+      setProductData(data);
       return data;
     } catch (error) {
       console.log(error);
@@ -73,25 +83,35 @@ export default function Page() {
   useEffect(() => {
     getPostData();
   }, []);
-  const element = document.createElement("span");
-  element.innerHTML = productData.title.rendered;
-  const decodedText = element.textContent;
+
+  useEffect(()=>{
+    console.log(productData)
+    if(!productData.name) return
+    let element = document.createElement("span");
+    element.innerHTML = productData.name;
+    let decodedText = element.textContent;
+    setDecodedName(decodedText)
+    element.innerHTML = productData.description
+    let decodedDesc = element.textContent
+    setDecodedDesc(decodedDesc)
+  },[productData])
+
+
   return (
     <div className={styles["body"]}>
       <Navigation />
-      <div className={styles['wrapper']}>
+      <div className={styles["wrapper"]}>
         {productData && (
           <div className={styles["hero-container"]}>
             <ImageGallery data={productData} />
             <div className={styles["description-block"]}>
-              <h1 className={styles["h1"]}>{decodedText}</h1>
-              <p className={styles["p-under-h1"]}>
-                {productData.acf.product_description}
-              </p>
-              <ProductDescription data={productData} />
+              <h1 className={styles["h1"]}>{decodedName}</h1>
+              <p className={styles["p-under-h1"]}>{productData?.acf?.short_description}</p>
+              <ProductDescription  data={productData} />
             </div>
           </div>
         )}
+        <p className={styles["description"]}>{decodedDesc}</p>
         <h2 className={styles["h2"]}>Отзывы клиентов</h2>
         <CommentBlock />
       </div>

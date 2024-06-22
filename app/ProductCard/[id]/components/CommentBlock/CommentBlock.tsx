@@ -64,7 +64,7 @@ export function CommentBlock() {
   async function getCommentData() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/comments?post=${id}`
+        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/comments?post=${id}`
       );
       const data = await response.json();
       setCommentData(data);
@@ -87,7 +87,7 @@ export function CommentBlock() {
     }
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/comments?post=${id}`,
+        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/comments?post=${id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

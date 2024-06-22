@@ -18,6 +18,7 @@ export interface INews {
     post_subtitle: string;
     post_img: string;
     post_text: string;
+    post_text_excerpt: string;
   };
 }
 
@@ -26,7 +27,7 @@ export function News() {
   async function getNewsData() {
     try {
       const response = await fetch(
-        "https://nozhtopor.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=down"
+        "https://nozhtoporshop.na4u.ru/wp-json/wp/v2/posts?acf_format=standard&_fields=id,title,acf&show_on_main_page=true&post_location=down"
       );
       const data = await response.json();
       setNews(data);
@@ -75,7 +76,7 @@ export function News() {
                         {newData.title.rendered.toLocaleUpperCase()}
                       </p>
                       <p className={styles["new-subtitle"]}>
-                        {newData.acf.post_subtitle}
+                        {newData.acf.post_text_excerpt}
                       </p>
                     </div>
 

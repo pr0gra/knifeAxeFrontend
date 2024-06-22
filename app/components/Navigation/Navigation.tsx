@@ -11,7 +11,7 @@ export function Navigation() {
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
-      window?.location.href.includes("/News/107")
+      window?.location.href.includes("/News/141")
     ) {
       setActivePage("aboutUs");
     } else if (
@@ -45,7 +45,7 @@ export function Navigation() {
         <li className={styles["li"]}>
           <Link
             style={{ opacity: activePage === "aboutUs" ? "0.5" : "1" }}
-            href="/News/107"
+            href="/News/141"
           >
             О нас
           </Link>

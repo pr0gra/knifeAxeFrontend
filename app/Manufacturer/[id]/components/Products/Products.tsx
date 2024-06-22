@@ -13,7 +13,7 @@ export function Products() {
   async function getProductsData() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/products?manufacturer_id=${params.id}&acf_format=standard&_fields=id,title,acf`
+        `https://nozhtoporshop.na4u.ru/wp-json/custom/v1/products?manufacturer_id=${params.id}`
       );
       const data = await response.json();
       setProductsData(data);

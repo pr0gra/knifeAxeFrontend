@@ -14,7 +14,7 @@ export default function Footer() {
   async function footerDataFetch() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/site-options`
+        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/site-options`
       );
       const data = await response.json();
       setFooterData(data);
@@ -26,7 +26,6 @@ export default function Footer() {
   useEffect(() => {
     footerDataFetch();
   }, []);
-
   return (
     <footer className={styles["footer"]}>
       <div className={styles["wrapper"]}>
@@ -71,7 +70,7 @@ export default function Footer() {
             <div className={styles["social-media-row"]}>
               <Link
                 className={styles["social-media-row"]}
-                href={footerData?.vk_url || "/"}
+                href={footerData?.yt_url || "/"}
               >
                 <Image
                   className={styles["youtube-img"]}
@@ -91,7 +90,7 @@ export default function Footer() {
           </div>
           <div className={styles["contact-info-row"]}>
             <Image className={styles["letter-img"]} src={letter} alt="letter" />
-            <p>{footerData?.почта}</p>
+            <p>{footerData?.email}</p>
           </div>
         </div>
       </div>

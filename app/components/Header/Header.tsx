@@ -10,10 +10,11 @@ import { useEffect, useState } from "react";
 export function Header() {
   const [headerData, setHeaderData] = useState<any>({});
   const [input, setInput] = useState("");
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   async function getheaderData() {
     try {
       const response = await fetch(
-        `https://nozhtopor.na4u.ru/wp-json/wp/v2/site-options`
+        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/site-options`
       );
       const data = await response.json();
       setHeaderData(data);
@@ -46,7 +47,7 @@ export function Header() {
           alt="location"
         />
         <div className={styles["location-text-conatiner"]}>
-          <p className={styles["location-text"]}>{headerData.adress_1}</p>
+          <p className={styles["location-text"]}>{headerData.adress}</p>
         </div>
       </div>
       <div className={styles["phone-container"]}>
@@ -105,6 +106,84 @@ export function Header() {
             />
           </svg>
         </Link>
+      </div>
+      <div className={styles["burger-menu"]}>
+        <button
+          onClick={() => {
+            setShowBurgerMenu((prev) => !prev);
+          }}
+        >
+          <svg
+            width="28"
+            height="17"
+            viewBox="0 0 28 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="28" height="3" rx="1.5" fill="#D9D9D9" />
+            <rect y="7" width="28" height="3" rx="1.5" fill="#D9D9D9" />
+            <rect y="14" width="28" height="3" rx="1.5" fill="#D9D9D9" />
+          </svg>
+        </button>
+        <div
+          style={{ maxHeight: showBurgerMenu ? `1230px` : "0px" }}
+          className={styles["burger-content"]}
+        >
+          <nav className={styles["nav"]}>
+            <ul className={styles["ul"]}>
+              <li className={styles["li"]}>
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href="/"
+                >
+                  ГЛАВНАЯ
+                </Link>
+              </li>
+              <li className={styles["li"]}>
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href="/Search/allProducts"
+                >
+                  ТОВАРЫ
+                </Link>
+              </li>
+              <li className={styles["li"]}>
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href="/News/141"
+                >
+                  О НАС
+                </Link>
+              </li>
+              <li className={styles["li"]}>
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href="/Favourite"
+                >
+                  ИЗБРАННОЕ
+                </Link>
+              </li>
+              <li className={styles["li"]}>
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href="/CartPage"
+                >
+                  КОРЗИНА
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );

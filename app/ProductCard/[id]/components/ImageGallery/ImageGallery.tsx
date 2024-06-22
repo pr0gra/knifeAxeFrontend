@@ -9,7 +9,7 @@ import heart from "@/app/assets/icons/heart.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Zoom } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 interface IProps {
   data: IProduct;
@@ -80,29 +80,32 @@ export function ImageGallery({ data }: IProps) {
           pagination={{
             clickable: true,
           }}
+          zoom={true}
           navigation={true}
-          modules={[Navigation, Pagination]}
+          modules={[Zoom, Navigation, Pagination]}
           className="mySwiper"
         >
-          {data.acf.product_photos.map((imgUrl, index) => {
+          {data.images.map((image: {src: string}, index) => {
+
             return (
               <SwiperSlide key={index}>
+                <div className="swiper-zoom-container">
                 <Image
                   className={styles["slider-img"]}
-                  src={imgUrl}
+                  src={image.src}
                   width={236}
                   height={224}
                   alt="img"
-                />
+                /></div>
               </SwiperSlide>
             );
           })}
         </Swiper>
       </div>
       <div className={styles["buttons-container"]}>
-        {data && data.acf.product_price && (
+        {data && data.price && (
           <p className={styles["price"]}>
-            {Number(data.acf.product_price).toLocaleString()} руб.
+            {Number(data.price).toLocaleString()} руб.
           </p>
         )}
         <button

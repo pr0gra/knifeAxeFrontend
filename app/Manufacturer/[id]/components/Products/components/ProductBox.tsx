@@ -11,7 +11,8 @@ import Link from "next/link";
 
 export interface IFavouriteProduct {
   id: number;
-  title: { rendered: string };
+  name: string;
+  images: {src: string}[];
   acf: {
     ax_height: string;
     ax_weight: string;
@@ -31,6 +32,7 @@ export interface IFavouriteProduct {
     product_thumbnail: string;
     steel_hardness: string;
   };
+  price:string;
 }
 
 export default function ProductBox({
@@ -52,7 +54,7 @@ export default function ProductBox({
   );
 
   const element = document.createElement("p");
-  element.innerHTML = product.title.rendered;
+  element.innerHTML = product.name;
   const decodedText = element.textContent;
 
   const handleAddToFavourite = () => {
@@ -99,7 +101,7 @@ export default function ProductBox({
     <div className={styles["product-box"]}>
       <Link href={`/ProductCard/${product.id}`}>
         <Image
-          src={product.acf.product_thumbnail}
+          src={product.images[0].src}
           alt="emptyImg"
           width={164}
           height={155}
@@ -108,7 +110,7 @@ export default function ProductBox({
         <p className={styles["p-under-image"]}>{decodedText}</p>
       </Link>
       <div className={styles["price-and-icons-container"]}>
-        <p className={styles["p-price"]}>{product.acf.product_price} руб.</p>
+        <p className={styles["p-price"]}>{product.price} руб.</p>
         <div className={styles['buttons-container']}>
         <button onClick={handleAddToFavourite}>
           <Image
