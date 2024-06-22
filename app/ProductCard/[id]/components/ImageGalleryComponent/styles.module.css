@@ -1,3 +1,7 @@
+.container {
+  width: 600px;
+}
+
 .price {
   font-family: var(--strong);
   font-weight: 400;
@@ -14,7 +18,7 @@
   color: white;
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
   padding: 6px;
 
   color: #fff;
@@ -37,15 +41,16 @@
   display: flex;
   margin: 0 auto;
 }
-.swiper-container {
-  width: 560px;
+.image-gallery-container {
   margin-bottom: 30px;
 }
 
-
-@media (max-width:1024px) {
-  .swiper-container {
-    width: 250px;
+@media (max-width: 1024px) {
+  .image-gallery-container {
+    max-width: 250px;
+  }
+  .container {
+    width: auto;
   }
 }
 

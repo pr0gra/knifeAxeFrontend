@@ -39,7 +39,6 @@ export function NewsSlider() {
     getNewsData();
   }, []);
 
-  console.log(newsData);
   return (
     <section className={styles["news-slider"]}>
       <div className={styles["slider"]}>

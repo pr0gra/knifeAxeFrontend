@@ -31,11 +31,11 @@ export function CartElement({
   }, [count]);
 
   const removeProductFromCart = () => {
-    const newCartData = cartData.filter((productInCart:IProduct)=>{
-      return productInCart.id !== data.id
-    }) 
-    setCartData(newCartData)
-    localStorage.setItem("cart", JSON.stringify(newCartData))
+    const newCartData = cartData.filter((productInCart: IProduct) => {
+      return productInCart.id !== data.id;
+    });
+    setCartData(newCartData);
+    localStorage.setItem("cart", JSON.stringify(newCartData));
   };
 
   const element = document.createElement("span");
@@ -52,7 +52,7 @@ export function CartElement({
       />
       <div className={styles["description-container"]}>
         <h3>{decodedText}</h3>
-        <p>{data.acf.product_description}</p>
+        <p>{data?.acf?.product_description}</p>
       </div>
       <div className={styles["count-container"]}>
         <button
@@ -95,7 +95,7 @@ export function CartElement({
             x2="6.14142"
             y2="5.85858"
             stroke="white"
-            stroke-width="0.4"
+            strokeWidth="0.4"
           />
           <line
             x1="0.858579"
@@ -103,7 +103,7 @@ export function CartElement({
             x2="5.85858"
             y2="0.858579"
             stroke="white"
-            stroke-width="0.4"
+            strokeWidth="0.4"
           />
         </svg>
       </button>

@@ -11,11 +11,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Zoom } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 interface IProps {
   data: IProduct;
 }
 
-export function ImageGallery({ data }: IProps) {
+export function ImageGalleryComponent({ data }: IProps) {
   const lsDataFavourite = JSON.parse(
     String(localStorage.getItem("favourite")) || ""
   );
@@ -69,38 +71,24 @@ export function ImageGallery({ data }: IProps) {
     }
     setIsAddedToCart((prev: boolean) => !prev);
   };
+  const imageGalleryArray = data.images
+    ? data.images.map((elem: { src: string }) => {
+        return { original: elem.src, thumbnail: elem.src };
+      })
+    : [];
 
   return (
-    <div>
-      <div className={styles["swiper-container"]}>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={1}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          zoom={true}
-          navigation={true}
-          modules={[Zoom, Navigation, Pagination]}
-          className="mySwiper"
-        >
-          {data.images.map((image: {src: string}, index) => {
-
-            return (
-              <SwiperSlide key={index}>
-                <div className="swiper-zoom-container">
-                <Image
-                  className={styles["slider-img"]}
-                  src={image.src}
-                  width={236}
-                  height={224}
-                  alt="img"
-                /></div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+    <div className={styles["container"]}>
+      <div className={styles["image-gallery-container"]}>
+        <ImageGallery
+          items={imageGalleryArray}
+          thumbnailPosition="bottom"
+          showPlayButton={false}
+          showFullscreenButton={true}
+          showNav={true}
+          showThumbnails={true}
+          lazyLoad={true}
+        />
       </div>
       <div className={styles["buttons-container"]}>
         {data && data.price && (
