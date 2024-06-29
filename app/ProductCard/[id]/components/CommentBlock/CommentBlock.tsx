@@ -75,10 +75,8 @@ export function CommentBlock({ setShowModalWindow }: any) {
       );
       const data = await response.json();
       setCommentData(data);
-      setShowModalWindow(true);
       return data;
     } catch (error) {
-      setShowModalWindow(false);
       console.log(error);
     }
   }
@@ -103,9 +101,13 @@ export function CommentBlock({ setShowModalWindow }: any) {
         }
       );
       const data = response.json();
+      setShowModalWindow(true);
+
       return data;
       // const result = await response.json();
     } catch (error) {
+      setShowModalWindow(false);
+
       console.error("Ошибка при отправке комментария: ", error);
     }
   };
@@ -125,6 +127,7 @@ export function CommentBlock({ setShowModalWindow }: any) {
         commentData.map((comment, index) => {
           return (
             <div
+              key={index}
               className={styles["comment-container-box"]}
               style={{
                 flexDirection: index % 2 === 0 ? "row" : "row-reverse",

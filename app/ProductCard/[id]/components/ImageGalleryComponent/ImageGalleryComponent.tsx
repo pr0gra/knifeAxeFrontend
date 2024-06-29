@@ -21,14 +21,22 @@ export function ImageGalleryComponent({ data }: IProps) {
   const lsDataFavourite = JSON.parse(
     String(localStorage.getItem("favourite")) || ""
   );
-  const lsDataCart = JSON.parse(String(localStorage.getItem("cart")) || "");
-
-  const [isAddedToCart, setIsAddedToCart] = useState(
-    lsDataCart ? Boolean(lsDataCart.find((x: any) => x.id === data.id)) : false
+  const [lsDataCart, setLsDataCart] = useState(
+    JSON.parse(String(localStorage.getItem("cart")))
   );
+  const [isAddedToCart, setIsAddedToCart] = useState(
+    lsDataCart ? lsDataCart.find((x: any) => x.id === data.id) : false
+  );
+
+  useEffect(() => {
+    setIsAddedToCart(
+      lsDataCart ? lsDataCart.find((x: any) => x.id === data.id) : false
+    );
+  }, [data]);
+  console.log(data, lsDataCart, isAddedToCart);
   const [isAddedToFavourite, setIsAddedToFavourite] = useState(
     lsDataFavourite
-      ? Boolean(lsDataFavourite.find((x: any) => x.id === data.id))
+      ? Boolean(lsDataFavourite.find((product: any) => product.id === data.id))
       : false
   );
 

@@ -22,10 +22,11 @@
 }
 
 .th-cart {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .th-cart p {
+  text-align: center;
   font-size: clamp(10px, 2vw, 16px);
   color: white;
   font-family: strong;
