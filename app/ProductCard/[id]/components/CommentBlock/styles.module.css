@@ -20,7 +20,7 @@
 .user-icon-container p {
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
 
   color: #dcd9d9;
   margin-top: clamp(4px, 0.103rem + 0.74vw, 14px);
@@ -34,7 +34,7 @@
 }
 .comment-block {
   background-color: #d2d2d2;
-  border-radius: 80px;
+  border-radius: 40px;
   padding: 25px 65px;
 
   /* padding-top: clamp(5px, 0.033rem + 1.4vw, 24px);
@@ -57,10 +57,17 @@
 
   height: clamp(18px, 0.522rem + 3.01vw, 59px);
 }
+.comment-tail-left {
+  left: -20px;
+}
+.comment-tail-right {
+  right: -20px;
+  transform: scaleX(-1);
+}
 .comment-block h3 {
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
 
   color: #1e1e1e;
   margin-bottom: 5px;
@@ -68,7 +75,7 @@
 .comment-block p {
   font-family: var(--strong);
   font-weight: 400;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
 
   color: #1e1e1e;
   margin-bottom: 5px;
@@ -110,7 +117,7 @@
 
 .input::placeholder {
   font-family: strong;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
   color: #d9d9d9;
 }
 
@@ -122,7 +129,7 @@
 }
 .input[type="text"] {
   font-weight: 400;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
 
   color: #d9d9d9;
 
@@ -135,7 +142,7 @@
 .button {
   color: #d9d9d9;
   font-family: strong;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
   margin: 0 auto;
   margin-top: clamp(0rem, -1.162rem + 5.81vw, 4.938rem);
   text-align: center;
@@ -146,29 +153,60 @@
 
 .error-message {
   color: red;
-  font-size: clamp(10px, 2vw,16px);
+  font-size: clamp(10px, 2vw, 16px);
   font-family: var(--strong);
 }
 
-
-@media (max-width:768px) {
+.modal-window {
+  position: relative;
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 67px 55px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(84, 84, 86, 0.85);
+  max-width: 645px;
+  border-radius: 14px;
+}
+.modal-window button {
+  position: absolute;
+  right: 35px;
+  top: 32px;
+}
+.modal-window p {
+  color: white;
+  padding: 41px 2px;
+  border: 1px solid white;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+@media (max-width: 768px) {
   .user-icon {
     width: 33px;
-    height: 33px;}
-  .subscribe-container{
+    height: 33px;
+  }
+  .subscribe-container {
     width: 200px;
-    box-sizing: border-box
-    ;
+    box-sizing: border-box;
     margin-bottom: 30px;
   }
-  .button{
+  .button {
     margin-top: 20px;
   }
 
-  .comment-block{
+  .comment-block {
     padding: 10px 20px;
   }
-  .comment-container{
+  .comment-container {
     padding: 0 30px;
+  }
+  .comment-tail-left {
+    left: -10px;
+  }
+  .comment-tail-right {
+    right: -10px;
+    transform: scaleX(-1);
   }
 }
