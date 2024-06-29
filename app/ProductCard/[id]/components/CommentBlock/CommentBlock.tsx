@@ -109,6 +109,16 @@ export function CommentBlock({ setShowModalWindow }: any) {
       console.error("Ошибка при отправке комментария: ", error);
     }
   };
+  function formatData(rawData: string) {
+    const inputDateString = rawData;
+    const date = new Date(inputDateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().slice(-2);
+    const outputDateString = `${day}/${month}/${year}`;
+
+    return outputDateString;
+  }
   return (
     <div className={styles["comment-container"]}>
       {commentData &&
@@ -144,8 +154,9 @@ export function CommentBlock({ setShowModalWindow }: any) {
                   )}
                 />
 
-
-                <h3 style={{ textAlign: "center" }}>{comment.date_created_gmt}</h3>
+                <h3 style={{ textAlign: "center" }}>
+                  {formatData(comment.date_created_gmt)}
+                </h3>
 
                 <p
                   dangerouslySetInnerHTML={{

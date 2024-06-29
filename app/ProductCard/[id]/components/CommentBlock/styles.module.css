@@ -56,6 +56,7 @@
   width: clamp(32px, 0.765rem + 6.18vw, 116px);
 
   height: clamp(18px, 0.522rem + 3.01vw, 59px);
+  z-index: -1;
 }
 .comment-tail-left {
   left: -20px;

@@ -71,7 +71,7 @@ export default function Page() {
       );
       const data = await response.json();
       setTotalCount(data.total / per_page);
-      console.log(data);
+
       setProductsData(data.products);
     } catch (error) {
       console.log(error);
