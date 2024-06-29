@@ -49,8 +49,10 @@ export default function Page() {
     });
   }, [productsToBuy]);
   const getTotalPrice = () => {
-    const totalCost = productsToBuy.reduce((acc, product: any) => {
-      const productData = cartData.find((item: any) => item.id === product.id);
+
+    const totalCost = productsToBuy.reduce((acc, product) => {
+      const productData = cartData.find((item: any) => item.id === product.product_id);
+
       if (productData) {
         const price = parseFloat(productData.price);
         return acc + price * product.quantity;

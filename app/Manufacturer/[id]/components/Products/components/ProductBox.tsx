@@ -98,6 +98,7 @@ export default function ProductBox({
     setIsAddedToCart((prev: boolean) => !prev);
   };
 
+
   return (
     <div className={styles["product-box"]}>
       <Link href={`/ProductCard/${product.id}`}>
