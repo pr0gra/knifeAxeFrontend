@@ -8,6 +8,8 @@ import styles from "./style.module.css";
 import { CommentBlock } from "./components/CommentBlock/CommentBlock";
 import { Navigation } from "@/app/components/Navigation/Navigation";
 import { consumer_key, consumer_secret } from "@/app/assets/data/wooCommerce";
+import Image from "next/image";
+import cross from "@/app/assets/icons/cross.png";
 
 export interface IProduct {
   id: number;
@@ -39,6 +41,7 @@ export interface IProduct {
 
 export default function Page() {
   const { id } = useParams();
+  const [showModalWindow, setShowModalWindow] = useState(false);
   const [productData, setProductData] = useState<IProduct>({
     id: 0,
     name: "",
@@ -96,25 +99,39 @@ export default function Page() {
   }, [productData]);
 
   return (
-    <div className={styles["body"]}>
-      <Navigation />
-      <div className={styles["wrapper"]}>
-        {productData && (
-          <div className={styles["hero-container"]}>
-            <ImageGalleryComponent data={productData} />
-            <div className={styles["description-block"]}>
-              <h1 className={styles["h1"]}>{decodedName}</h1>
-              <p className={styles["p-under-h1"]}>
-                {productData?.acf?.short_description}
-              </p>
-              <ProductDescription data={productData} />
+    <>
+      {showModalWindow && (
+        <div className={styles["modal-window"]}>
+          <button onClick={() => setShowModalWindow(false)}>
+            <Image src={cross} width={21} height={21} alt="cross" />
+          </button>
+          <p>
+            Большое спасибо за оставленный отзыв!
+            <br /> На данный момент он находится на рассмотрении, после
+            обработки мы обязательно его опубликуем!
+          </p>
+        </div>
+      )}
+      <div className={styles["body"]}>
+        <Navigation />
+        <div className={styles["wrapper"]}>
+          {productData && (
+            <div className={styles["hero-container"]}>
+              <ImageGalleryComponent data={productData} />
+              <div className={styles["description-block"]}>
+                <h1 className={styles["h1"]}>{decodedName}</h1>
+                <p className={styles["p-under-h1"]}>
+                  {productData?.acf?.short_description}
+                </p>
+                <ProductDescription data={productData} />
+              </div>
             </div>
-          </div>
-        )}
-        <p className={styles["description"]}>{decodedDesc}</p>
-        <h2 className={styles["h2"]}>Отзывы клиентов</h2>
-        <CommentBlock />
+          )}
+          <p className={styles["description"]}>{decodedDesc}</p>
+          <h2 className={styles["h2"]}>Отзывы клиентов</h2>
+          <CommentBlock setShowModalWindow={setShowModalWindow} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

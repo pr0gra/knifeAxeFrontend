@@ -194,3 +194,6 @@ button {
   justify-content: center;
   height: 100%;
 }
+.image-gallery-icon {
+  z-index: 1;
+}

@@ -10,6 +10,8 @@ import commentTail from "@/app/assets/icons/comment-tail.svg";
 import commentTailSmall from "@/app/assets/icons/comment-tail-small.svg";
 import { IProduct } from "../../page";
 import { consumer_key, consumer_secret } from "@/app/assets/data/wooCommerce";
+import cross from "@/app/assets/icons/cross.png";
+import cx from "classnames";
 
 interface IComment {
   id: number;
@@ -54,9 +56,10 @@ interface IComment {
   };
 }
 
-export function CommentBlock() {
+export function CommentBlock({ setShowModalWindow }: any) {
   const { id } = useParams();
   const [commentData, setCommentData] = useState<IComment[]>([]);
+
   const [formData, setFormData] = useState({
     product_id: id,
     reviewer_email: "",
@@ -72,9 +75,10 @@ export function CommentBlock() {
       );
       const data = await response.json();
       setCommentData(data);
-
+      setShowModalWindow(true);
       return data;
     } catch (error) {
+      setShowModalWindow(false);
       console.log(error);
     }
   }
@@ -112,8 +116,9 @@ export function CommentBlock() {
           return (
             <div
               className={styles["comment-container-box"]}
-              key={comment.id}
-              style={{ flexDirection: index % 2 === 0 ? "row" : "row-reverse" }}
+              style={{
+                flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+              }}
             >
               <div className={styles["user-icon-container"]}>
                 <Image
@@ -131,15 +136,17 @@ export function CommentBlock() {
                   height={59}
                   width={116}
                   alt="comment-tail"
-                  className={styles["comment-tail"]}
-                  style={{
-                    transform: `scaleX(${index % 2 === 0 ? "1" : "-1"})`,
-                    right: index % 2 === 0 ? "" : "-20px",
-                    left: index % 2 === 0 ? "-20px" : "",
-                  }}
+                  className={cx(
+                    styles["comment-tail"],
+                    index % 2 === 0
+                      ? styles["comment-tail-left"]
+                      : styles["comment-tail-right"]
+                  )}
                 />
 
-                <h3>{comment.date_created_gmt}</h3>
+
+                <h3 style={{ textAlign: "center" }}>{comment.date_created_gmt}</h3>
+
                 <p
                   dangerouslySetInnerHTML={{
                     __html: sanitizeHtml(comment.review),
