@@ -15,11 +15,14 @@ interface IComment {
   id: number;
   post: number;
   parent: number;
+  review: string;
   author: number;
   author_name: string;
   author_url: string;
   date: string;
   date_gmt: string;
+  reviewer: string;
+  date_created_gmt: string;
   content: {
     rendered: string;
   };
@@ -55,10 +58,10 @@ export function CommentBlock() {
   const { id } = useParams();
   const [commentData, setCommentData] = useState<IComment[]>([]);
   const [formData, setFormData] = useState({
-    post: id,
-    author_email: "",
-    author_name: "",
-    content: "",
+    product_id: id,
+    reviewer_email: "",
+    reviewer: "",
+    review: "",
   });
   const [errorState, setErrorState] = useState(false);
 
@@ -82,13 +85,13 @@ export function CommentBlock() {
   const handleSubmit = async (event: any) => {
     setErrorState(false);
     event.preventDefault();
-    if (!formData.author_email && !formData.author_name && !formData.content) {
+    if (!formData.reviewer_email && !formData.reviewer && !formData.review) {
       setErrorState(true);
       return;
     }
     try {
       const response = await fetch(
-        `https://nozhtoporshop.na4u.ru/wp-json/wp/v2/comments?post=${id}?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+        `https://nozhtoporshop.na4u.ru/wp-json/wc/v3/products/reviews?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -120,7 +123,7 @@ export function CommentBlock() {
                   alt="user icon"
                   className={styles["user-icon"]}
                 />
-                <p>{comment.author_name}</p>
+                <p>{comment.reviewer}</p>
               </div>
               <div className={styles["comment-block"]}>
                 <Image
@@ -136,10 +139,10 @@ export function CommentBlock() {
                   }}
                 />
 
-                <h3>{comment.date_gmt}</h3>
+                <h3>{comment.date_created_gmt}</h3>
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: sanitizeHtml(comment.content.rendered),
+                    __html: sanitizeHtml(comment.review),
                   }}
                 />
               </div>
@@ -155,7 +158,7 @@ export function CommentBlock() {
           type="text"
           onChange={(event: any) => {
             setFormData((prev: any) => {
-              return { ...prev, author_email: event.target.value };
+              return { ...prev, reviewer_email: event.target.value };
             });
           }}
         />
@@ -166,7 +169,7 @@ export function CommentBlock() {
           type="text"
           onChange={(event: any) => {
             setFormData((prev: any) => {
-              return { ...prev, author_name: event.target.value };
+              return { ...prev, reviewer: event.target.value };
             });
           }}
         />
@@ -177,23 +180,23 @@ export function CommentBlock() {
           type="text"
           onChange={(event: any) => {
             setFormData((prev: any) => {
-              return { ...prev, content: event.target.value };
+              return { ...prev, review: event.target.value };
             });
           }}
         />
         {errorState && (
           <>
-            {!formData.author_email && (
+            {!formData.reviewer_email && (
               <p className={styles["error-message"]}>
                 Поле email не должно быть пустым
               </p>
             )}
-            {!formData.author_name && (
+            {!formData.reviewer && (
               <p className={styles["error-message"]}>
                 Поле имя не должно быть пустым"
               </p>
             )}
-            {!formData.content && (
+            {!formData.review && (
               <p className={styles["error-message"]}>
                 Поле текст отзыва не должно быть пустым
               </p>
